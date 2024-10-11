@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degrees of Comparison - Adjectives Quiz</title>
+    <style>
+        .correct {
+            background-color: green;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: red;
+            color: white;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Degrees of Comparison - Adjectives Quiz</h1>
+
+    <div id="quiz">
+        <!-- Question 1 -->
+        <div class="question" id="q1">
+            <p>1. What is the comparative form of "happy"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Happier</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More happy</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Happiest</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question" id="q2">
+            <p>2. What is the superlative form of "tall"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Tallest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More tall</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most tall</button>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question" id="q3">
+            <p>3. What is the positive form of "bigger"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Big</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Biggest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More big</button>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question" id="q4">
+            <p>4. What is the comparative form of "good"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Better</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More good</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Gooder</button>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question" id="q5">
+            <p>5. What is the superlative form of "bad"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Worst</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Baddest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most bad</button>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question" id="q6">
+            <p>6. What is the comparative form of "expensive"?</p>
+            <button onclick="checkAnswer(this, 'correct')">More expensive</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Expensiver</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most expensive</button>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question" id="q7">
+            <p>7. What is the positive form of "nicest"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Nice</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Nicer</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most nice</button>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question" id="q8">
+            <p>8. What is the comparative form of "funny"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Funnier</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Funnyer</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most funny</button>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question" id="q9">
+            <p>9. What is the superlative form of "large"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Largest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Larger</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most large</button>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question" id="q10">
+            <p>10. What is the positive form of "more beautiful"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Beautiful</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Beautifuller</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Beautifulest</button>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question" id="q11">
+            <p>11. What is the superlative form of "easy"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Easiest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More easy</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most easy</button>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question" id="q12">
+            <p>12. What is the comparative form of "old"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Older</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Oldest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Olden</button>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question" id="q13">
+            <p>13. What is the superlative form of "heavy"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Heaviest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More heavy</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most heavy</button>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question" id="q14">
+            <p>14. What is the positive form of "worse"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Bad</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Badder</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Worst</button>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question" id="q15">
+            <p>15. What is the superlative form of "fast"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Fastest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Faster</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most fast</button>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question" id="q16">
+            <p>16. What is the comparative form of "clever"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Cleverer</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More clever</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Cleverest</button>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question" id="q17">
+            <p>17. What is the positive form of "happiest"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Happy</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Happier</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More happy</button>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question" id="q18">
+            <p>18. What is the comparative form of "cold"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Colder</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Coldest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More cold</button>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question" id="q19">
+            <p>19. What is the superlative form of "brave"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Bravest</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Braver</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Most brave</button>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question" id="q20">
+            <p>20. What is the positive form of "stronger"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Strong</button>
+            <button onclick="checkAnswer(this, 'incorrect')">More strong</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Strongest</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswer(button, status) {
+            if (status === 'correct') {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+            }
+        }
+    </script>
+
+</body>
+</html>

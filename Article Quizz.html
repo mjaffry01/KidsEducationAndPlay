@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles Exercise: "A," "An," "The"</title>
+    <style>
+        .correct {
+            background-color: green;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: red;
+            color: white;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Practice Articles: "A," "An," "The"</h1>
+
+    <div id="quiz">
+        <!-- Question 1 -->
+        <div class="question" id="q1">
+            <p>1. I saw ________ dog in the park.</p>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question" id="q2">
+            <p>2. She is ________ honest person.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question" id="q3">
+            <p>3. We are going to ________ beach tomorrow.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'the')">The</button>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question" id="q4">
+            <p>4. There is ________ university near my house.</p>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question" id="q5">
+            <p>5. I saw ________ elephant at the zoo.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question" id="q6">
+            <p>6. ________ Earth revolves around the sun.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'the')">The</button>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question" id="q7">
+            <p>7. She is eating ________ apple.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question" id="q8">
+            <p>8. I want ________ cup of tea.</p>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question" id="q9">
+            <p>9. He is ________ best student in the class.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'the')">The</button>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question" id="q10">
+            <p>10. We live on ________ small island.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question" id="q11">
+            <p>11. He is ________ engineer.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question" id="q12">
+            <p>12. ________ sun is shining brightly today.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'the')">The</button>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question" id="q13">
+            <p>13. We stayed in ________ hotel near the beach.</p>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question" id="q14">
+            <p>14. I have never seen ________ owl before.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question" id="q15">
+            <p>15. I read ________ interesting book last night.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question" id="q16">
+            <p>16. We visited ________ Statue of Liberty in New York.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'the')">The</button>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question" id="q17">
+            <p>17. She is wearing ________ blue dress.</p>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question" id="q18">
+            <p>18. ________ moon looks beautiful tonight.</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'the')">The</button>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question" id="q19">
+            <p>19. He bought ________ house last year.</p>
+            <button onclick="checkAnswer(this, 'a')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question" id="q20">
+            <p>20. I have ________ idea.</p>
+            <button onclick="checkAnswer(this, 'an')">An</button>
+            <button onclick="checkAnswer(this, 'incorrect')">A</button>
+            <button onclick="checkAnswer(this, 'incorrect')">The</button>
+        </div>
+
+        <!-- Add more questions -->
+
+    </div>
+
+    <script>
+        function checkAnswer(button, status) {
+            if (status === 'correct' || status === 'a' || status === 'an' || status === 'the') {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+            }
+        }
+    </script>
+
+</body>
+</html>

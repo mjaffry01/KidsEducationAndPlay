@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irregular Verbs Quiz</title>
+    <style>
+        .correct {
+            background-color: green;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: red;
+            color: white;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Irregular Verbs Quiz</h1>
+
+    <div id="quiz">
+        <!-- Question 1 -->
+        <div class="question" id="q1">
+            <p>1. What is the past tense of "go"?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">Go</button>
+            <button onclick="checkAnswer(this, 'correct')">Went</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Gone</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question" id="q2">
+            <p>2. What is the past participle of "eat"?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">Ate</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Eat</button>
+            <button onclick="checkAnswer(this, 'correct')">Eaten</button>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question" id="q3">
+            <p>3. What is the past tense of "take"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Took</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Taken</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Take</button>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question" id="q4">
+            <p>4. What is the past participle of "give"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Given</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Gave</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Give</button>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question" id="q5">
+            <p>5. What is the past tense of "run"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Ran</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Run</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Running</button>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question" id="q6">
+            <p>6. What is the past participle of "see"?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">Saw</button>
+            <button onclick="checkAnswer(this, 'correct')">Seen</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Seeing</button>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question" id="q7">
+            <p>7. What is the past tense of "write"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Wrote</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Written</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Writing</button>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question" id="q8">
+            <p>8. What is the past participle of "drink"?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">Drank</button>
+            <button onclick="checkAnswer(this, 'correct')">Drunk</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Drink</button>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question" id="q9">
+            <p>9. What is the past tense of "sing"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Sang</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Sung</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Sing</button>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question" id="q10">
+            <p>10. What is the past participle of "fly"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Flown</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Flew</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Fly</button>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question" id="q11">
+            <p>11. What is the past tense of "begin"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Began</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Begun</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Begin</button>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question" id="q12">
+            <p>12. What is the past participle of "choose"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Chosen</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Chose</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Choose</button>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question" id="q13">
+            <p>13. What is the past tense of "buy"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Bought</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Buyed</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Buying</button>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question" id="q14">
+            <p>14. What is the past participle of "break"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Broken</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Broke</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Breaking</button>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question" id="q15">
+            <p>15. What is the past tense of "swim"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Swam</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Swum</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Swimming</button>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question" id="q16">
+            <p>16. What is the past participle of "drive"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Driven</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Drove</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Driving</button>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question" id="q17">
+            <p>17. What is the past tense of "build"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Built</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Builded</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Building</button>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question" id="q18">
+            <p>18. What is the past participle of "know"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Known</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Knew</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Knowing</button>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question" id="q19">
+            <p>19. What is the past tense of "sell"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Sold</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Selled</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Selling</button>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question" id="q20">
+            <p>20. What is the past participle of "speak"?</p>
+            <button onclick="checkAnswer(this, 'correct')">Spoken</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Spoke</button>
+            <button onclick="checkAnswer(this, 'incorrect')">Speaking</button>
+        </div>
+    </div>
+
+    <!-- Question 21 -->
+<div class="question" id="q21">
+    <p>21. What is the past tense of "bring"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Bringed</button>
+    <button onclick="checkAnswer(this, 'correct')">Brought</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Bringing</button>
+</div>
+
+<!-- Question 22 -->
+<div class="question" id="q22">
+    <p>22. What is the past participle of "fall"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Falling</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Fell</button>
+    <button onclick="checkAnswer(this, 'correct')">Fallen</button>
+</div>
+
+<!-- Question 23 -->
+<div class="question" id="q23">
+    <p>23. What is the past tense of "catch"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Catching</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Catch</button>
+    <button onclick="checkAnswer(this, 'correct')">Caught</button>
+</div>
+
+<!-- Question 24 -->
+<div class="question" id="q24">
+    <p>24. What is the past participle of "forget"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Forgotten</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Forgetting</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Forgot</button>
+</div>
+
+<!-- Question 25 -->
+<div class="question" id="q25">
+    <p>25. What is the past tense of "find"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Finding</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Founding</button>
+    <button onclick="checkAnswer(this, 'correct')">Found</button>
+</div>
+
+<!-- Question 26 -->
+<div class="question" id="q26">
+    <p>26. What is the past participle of "teach"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Taught</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Teaching</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Teached</button>
+</div>
+
+<!-- Question 27 -->
+<div class="question" id="q27">
+    <p>27. What is the past tense of "blow"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Blew</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Blowed</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Blowing</button>
+</div>
+
+<!-- Question 28 -->
+<div class="question" id="q28">
+    <p>28. What is the past participle of "bite"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Biting</button>
+    <button onclick="checkAnswer(this, 'correct')">Bitten</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Bit</button>
+</div>
+
+<!-- Question 29 -->
+<div class="question" id="q29">
+    <p>29. What is the past tense of "ride"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Rode</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Rided</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Riding</button>
+</div>
+
+<!-- Question 30 -->
+<div class="question" id="q30">
+    <p>30. What is the past participle of "swear"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Sweared</button>
+    <button onclick="checkAnswer(this, 'correct')">Sworn</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Swore</button>
+</div>
+
+<!-- Question 31 -->
+<div class="question" id="q31">
+    <p>31. What is the past tense of "meet"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Met</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Meeting</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Meeted</button>
+</div>
+
+<!-- Question 32 -->
+<div class="question" id="q32">
+    <p>32. What is the past participle of "cut"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Cut</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Cutting</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Cutted</button>
+</div>
+
+<!-- Question 33 -->
+<div class="question" id="q33">
+    <p>33. What is the past tense of "sleep"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Slept</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Sleeping</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Sleeped</button>
+</div>
+
+<!-- Question 34 -->
+<div class="question" id="q34">
+    <p>34. What is the past participle of "pay"?</p>
+    <button onclick="checkAnswer(this, 'incorrect')">Paying</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Payed</button>
+    <button onclick="checkAnswer(this, 'correct')">Paid</button>
+</div>
+
+<!-- Question 35 -->
+<div class="question" id="q35">
+    <p>35. What is the past tense of "lead"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Led</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Lead</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Leaded</button>
+</div>
+
+<!-- Question 36 -->
+<div class="question" id="q36">
+    <p>36. What is the past participle of "choose"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Chosen</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Chose</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Choosing</button>
+</div>
+
+<!-- Question 37 -->
+<div class="question" id="q37">
+    <p>37. What is the past tense of "sit"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Sat</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Sitted</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Sitting</button>
+</div>
+
+<!-- Question 38 -->
+<div class="question" id="q38">
+    <p>38. What is the past participle of "begin"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Begun</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Began</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Beginning</button>
+</div>
+
+<!-- Question 39 -->
+<div class="question" id="q39">
+    <p>39. What is the past tense of "lend"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Lent</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Lended</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Lending</button>
+</div>
+
+<!-- Question 40 -->
+<div class="question" id="q40">
+    <p>40. What is the past participle of "keep"?</p>
+    <button onclick="checkAnswer(this, 'correct')">Kept</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Keeping</button>
+    <button onclick="checkAnswer(this, 'incorrect')">Keeped</button>
+</div>
+
+
+    <script>
+        function checkAnswer(button, status) {
+            if (status === 'correct') {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+            }
+        }
+    </script>
+
+</body>
+</html>

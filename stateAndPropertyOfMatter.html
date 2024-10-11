@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>States and Properties of Matter Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .option-btn {
+            margin-bottom: 10px;
+        }
+        .feedback {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">States and Properties of Matter Quiz</h1>
+        <form id="quizForm">
+            <!-- Questions will be injected here by JavaScript -->
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript for Quiz Functionality -->
+    <script>
+        const questions = [
+            // Easy Questions
+            {
+                question: "1. What is the solid state of water called?",
+                options: {
+                    A: "Vapor",
+                    B: "Liquid",
+                    C: "Ice",
+                    D: "Steam"
+                },
+                answer: "C",
+                explanation: "Ice is the solid state of water."
+            },
+            {
+                question: "2. Which state of matter has a definite shape and volume?",
+                options: {
+                    A: "Gas",
+                    B: "Solid",
+                    C: "Liquid",
+                    D: "Plasma"
+                },
+                answer: "B",
+                explanation: "Solids have a definite shape and volume."
+            },
+            {
+                question: "3. What state of matter flows and takes the shape of its container?",
+                options: {
+                    A: "Solid",
+                    B: "Gas",
+                    C: "Liquid",
+                    D: "Plasma"
+                },
+                answer: "C",
+                explanation: "Liquids flow and take the shape of their container."
+            },
+            {
+                question: "4. Which state of matter can be compressed easily?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "C",
+                explanation: "Gases can be compressed easily."
+            },
+            {
+                question: "5. Which of the following is NOT a state of matter?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Energy"
+                },
+                answer: "D",
+                explanation: "Energy is not a state of matter."
+            },
+            // ... (Include all 35 questions here)
+            // For brevity, I'll include up to question 15 and indicate continuation
+            {
+                question: "6. What happens to particles in a solid when it is heated?",
+                options: {
+                    A: "They move faster",
+                    B: "They stop moving",
+                    C: "They spread apart",
+                    D: "They disappear"
+                },
+                answer: "A",
+                explanation: "Heating makes particles move faster."
+            },
+            {
+                question: "7. Which state of matter has particles that are far apart and move freely?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "C",
+                explanation: "In gases, particles are far apart and move freely."
+            },
+            {
+                question: "8. What is the process of turning from solid to liquid called?",
+                options: {
+                    A: "Freezing",
+                    B: "Melting",
+                    C: "Evaporation",
+                    D: "Condensation"
+                },
+                answer: "B",
+                explanation: "Melting is the process of turning from solid to liquid."
+            },
+            {
+                question: "9. Which state of matter has the highest energy?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "D",
+                explanation: "Plasma has the highest energy among states of matter."
+            },
+            {
+                question: "10. What state of matter makes up the air we breathe?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "C",
+                explanation: "Air is made up of gases."
+            },
+            {
+                question: "11. Which property determines the shape of a solid?",
+                options: {
+                    A: "Volume",
+                    B: "Mass",
+                    C: "Shape",
+                    D: "Density"
+                },
+                answer: "C",
+                explanation: "The shape property determines the shape of a solid."
+            },
+            {
+                question: "12. What is the liquid state of mercury at room temperature?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "B",
+                explanation: "Mercury is liquid at room temperature."
+            },
+            {
+                question: "13. Which process involves gas turning into liquid?",
+                options: {
+                    A: "Freezing",
+                    B: "Melting",
+                    C: "Evaporation",
+                    D: "Condensation"
+                },
+                answer: "D",
+                explanation: "Condensation is the process where gas turns into liquid."
+            },
+            {
+                question: "14. What is the property of matter that measures how much matter is in an object?",
+                options: {
+                    A: "Volume",
+                    B: "Mass",
+                    C: "Density",
+                    D: "Shape"
+                },
+                answer: "B",
+                explanation: "Mass measures how much matter is in an object."
+            },
+            {
+                question: "15. Which of the following is a property of liquids?",
+                options: {
+                    A: "Definite shape",
+                    B: "Definite volume",
+                    C: "Cannot flow",
+                    D: "Particles are tightly packed"
+                },
+                answer: "B",
+                explanation: "Liquids have a definite volume but no definite shape."
+            },
+            // ... Continue adding questions up to 35
+            // For demonstration, I will include up to question 20
+            {
+                question: "16. What is the process of gas turning directly into solid called?",
+                options: {
+                    A: "Freezing",
+                    B: "Sublimation",
+                    C: "Deposition",
+                    D: "Condensation"
+                },
+                answer: "C",
+                explanation: "Deposition is the process where gas turns directly into solid."
+            },
+            {
+                question: "17. Which state of matter has a fixed volume but no fixed shape?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "B",
+                explanation: "Liquids have a fixed volume but take the shape of their container."
+            },
+            {
+                question: "18. What is the gaseous state of water called?",
+                options: {
+                    A: "Ice",
+                    B: "Liquid water",
+                    C: "Steam",
+                    D: "Snow"
+                },
+                answer: "C",
+                explanation: "Steam is the gaseous state of water."
+            },
+            {
+                question: "19. Which property of matter is defined as mass per unit volume?",
+                options: {
+                    A: "Volume",
+                    B: "Mass",
+                    C: "Density",
+                    D: "Weight"
+                },
+                answer: "C",
+                explanation: "Density is mass per unit volume."
+            },
+            {
+                question: "20. In which state of matter do particles vibrate in place but do not move around?",
+                options: {
+                    A: "Solid",
+                    B: "Liquid",
+                    C: "Gas",
+                    D: "Plasma"
+                },
+                answer: "A",
+                explanation: "In solids, particles vibrate in place but do not move around."
+            },
+            
+
+                // Questions 20 to 30
+{
+    question: "20. In which state of matter do particles vibrate in place but do not move around?",
+    options: {
+        A: "Solid",
+        B: "Liquid",
+        C: "Gas",
+        D: "Plasma"
+    },
+    answer: "A",
+    explanation: "In solids, particles are tightly packed and only vibrate in place, giving them a fixed shape and volume."
+},
+{
+    question: "21. Which state of matter has neither a definite shape nor a definite volume?",
+    options: {
+        A: "Solid",
+        B: "Liquid",
+        C: "Gas",
+        D: "Plasma"
+    },
+    answer: "C",
+    explanation: "Gases do not have a fixed shape or volume; they expand to fill the container they are in."
+},
+{
+    question: "22. What is the process called when a liquid turns into a gas?",
+    options: {
+        A: "Freezing",
+        B: "Melting",
+        C: "Evaporation",
+        D: "Condensation"
+    },
+    answer: "C",
+    explanation: "Evaporation is the process where a liquid changes into a gas, usually occurring at the surface of the liquid."
+},
+{
+    question: "23. Which of the following is an example of a liquid?",
+    options: {
+        A: "Ice",
+        B: "Water",
+        C: "Steam",
+        D: "Oxygen"
+    },
+    answer: "B",
+    explanation: "Water is in the liquid state at room temperature, having a definite volume but no fixed shape."
+},
+{
+    question: "24. What happens to the particles in a liquid when it is heated?",
+    options: {
+        A: "They move slower and get closer together",
+        B: "They move faster and spread apart",
+        C: "They stop moving",
+        D: "They turn into a solid"
+    },
+    answer: "B",
+    explanation: "Heating a liquid increases the energy of its particles, making them move faster and spread apart, which can lead to evaporation."
+},
+{
+    question: "25. Which state of matter has the particles that are farthest apart?",
+    options: {
+        A: "Solid",
+        B: "Liquid",
+        C: "Gas",
+        D: "Plasma"
+    },
+    answer: "C",
+    explanation: "In gases, particles are far apart and move freely, allowing the gas to expand and fill its container."
+},
+{
+    question: "26. What is the process called when a solid turns directly into a gas without becoming liquid?",
+    options: {
+        A: "Melting",
+        B: "Freezing",
+        C: "Sublimation",
+        D: "Deposition"
+    },
+    answer: "C",
+    explanation: "Sublimation is when a solid changes directly into a gas without passing through the liquid state, such as dry ice turning into carbon dioxide gas."
+},
+{
+    question: "27. Which state of matter has a definite volume but takes the shape of its container?",
+    options: {
+        A: "Solid",
+        B: "Liquid",
+        C: "Gas",
+        D: "Plasma"
+    },
+    answer: "B",
+    explanation: "Liquids have a fixed volume but can flow to take the shape of the container they are in."
+},
+{
+    question: "28. What is the gaseous state of water called?",
+    options: {
+        A: "Ice",
+        B: "Liquid water",
+        C: "Steam",
+        D: "Snow"
+    },
+    answer: "C",
+    explanation: "Steam is the gaseous form of water, produced when water is heated and evaporates."
+},
+{
+    question: "29. Which property of matter is defined as mass per unit volume?",
+    options: {
+        A: "Volume",
+        B: "Mass",
+        C: "Density",
+        D: "Weight"
+    },
+    answer: "C",
+    explanation: "Density measures how much mass is contained in a given volume of a substance."
+},
+{
+    question: "30. Which of the following best describes the particles in a plasma?",
+    options: {
+        A: "Tightly packed and vibrating in place",
+        B: "Moving freely and spread apart",
+        C: "Ionized particles with high energy",
+        D: "Arranged in a fixed pattern"
+    },
+    answer: "C",
+    explanation: "Plasma consists of ionized particles that have high energy, allowing them to move freely. It is considered the fourth state of matter."
+},
+
+
+            // Tough Questions
+            {
+                question: "31. Which state of matter is considered plasma?",
+                options: {
+                    A: "Water vapor",
+                    B: "Oxygen gas",
+                    C: "Lightning",
+                    D: "Liquid nitrogen"
+                },
+                answer: "C",
+                explanation: "Lightning is an example of plasma, the fourth state of matter."
+            },
+            {
+                question: "32. What is the term for a substance that cannot be changed into another state by heating or cooling?",
+                options: {
+                    A: "Element",
+                    B: "Compound",
+                    C: "Mixture",
+                    D: "Inert material"
+                },
+                answer: "D",
+                explanation: "An inert material cannot be easily changed into another state."
+            },
+            {
+                question: "33. How does pressure affect the state of matter?",
+                options: {
+                    A: "Higher pressure can turn gas into liquid",
+                    B: "Pressure has no effect",
+                    C: "Higher pressure turns solid into gas",
+                    D: "Lower pressure turns liquid into solid"
+                },
+                answer: "A",
+                explanation: "Higher pressure can cause gas particles to come closer, turning them into liquid."
+            },
+            {
+                question: "34. What is sublimation?",
+                options: {
+                    A: "Liquid turning into gas",
+                    B: "Gas turning into liquid",
+                    C: "Solid turning directly into gas",
+                    D: "Solid turning into liquid"
+                },
+                answer: "C",
+                explanation: "Sublimation is when a solid turns directly into gas without becoming liquid."
+            },
+            {
+                question: "35. Which of the following best explains why solids have a fixed shape?",
+                options: {
+                    A: "Particles are moving rapidly",
+                    B: "Particles are loosely connected",
+                    C: "Particles are tightly packed and vibrate in place",
+                    D: "Particles are spreading out"
+                },
+                answer: "C",
+                explanation: "In solids, particles are tightly packed and only vibrate in place, giving them a fixed shape."
+            },
+            // Questions 36 to 50
+{
+    question: "36. What is the boiling point of water at sea level?",
+    options: {
+        A: "0°C",
+        B: "50°C",
+        C: "100°C",
+        D: "200°C"
+    },
+    answer: "C",
+    explanation: "At sea level, water boils at 100 degrees Celsius."
+},
+{
+    question: "37. What happens to a liquid when it reaches its boiling point?",
+    options: {
+        A: "It freezes",
+        B: "It turns into gas",
+        C: "It remains the same",
+        D: "It turns into solid"
+    },
+    answer: "B",
+    explanation: "When a liquid reaches its boiling point, it changes into vapor or gas."
+},
+{
+    question: "38. Which of the following affects the boiling point of a liquid?",
+    options: {
+        A: "Color",
+        B: "Pressure",
+        C: "Taste",
+        D: "Size"
+    },
+    answer: "B",
+    explanation: "The boiling point of a liquid changes with pressure; higher pressure raises the boiling point."
+},
+{
+    question: "39. What is the process called when water vapor cools and turns back into liquid?",
+    options: {
+        A: "Evaporation",
+        B: "Condensation",
+        C: "Precipitation",
+        D: "Collection"
+    },
+    answer: "B",
+    explanation: "Condensation is when water vapor cools and changes back into liquid water, forming clouds."
+},
+{
+    question: "40. In the water cycle, what is the process of water falling from clouds to the earth called?",
+    options: {
+        A: "Evaporation",
+        B: "Condensation",
+        C: "Precipitation",
+        D: "Collection"
+    },
+    answer: "C",
+    explanation: "Precipitation is water falling from clouds as rain, snow, sleet, or hail."
+},
+{
+    question: "41. Which process describes water changing from liquid to gas?",
+    options: {
+        A: "Freezing",
+        B: "Melting",
+        C: "Evaporation",
+        D: "Condensation"
+    },
+    answer: "C",
+    explanation: "Evaporation is when liquid water changes into water vapor or gas."
+},
+{
+    question: "42. What increases the rate of evaporation?",
+    options: {
+        A: "Lower temperature",
+        B: "Higher humidity",
+        C: "More surface area",
+        D: "Less surface area"
+    },
+    answer: "C",
+    explanation: "More surface area allows more molecules to escape into the air, increasing evaporation."
+},
+{
+    question: "43. What is a solution?",
+    options: {
+        A: "A solid mixed with a liquid",
+        B: "A mixture where one substance dissolves in another",
+        C: "A liquid that does not mix with others",
+        D: "A gas dissolved in a solid"
+    },
+    answer: "B",
+    explanation: "A solution is a homogeneous mixture where one substance (solute) is dissolved in another (solvent)."
+},
+{
+    question: "44. In a sugar solution, what is the sugar?",
+    options: {
+        A: "Solvent",
+        B: "Solute",
+        C: "Mixture",
+        D: "Compound"
+    },
+    answer: "B",
+    explanation: "In a solution, the solute is the substance that is dissolved; sugar is the solute in a sugar solution."
+},
+{
+    question: "45. What is the solvent in a saltwater solution?",
+    options: {
+        A: "Salt",
+        B: "Water",
+        C: "Sugar",
+        D: "Air"
+    },
+    answer: "B",
+    explanation: "The solvent is the substance that does the dissolving; water is the solvent in saltwater."
+},
+{
+    question: "46. What is a common cause of water pollution?",
+    options: {
+        A: "Planting trees",
+        B: "Throwing trash into rivers",
+        C: "Swimming",
+        D: "Drinking water"
+    },
+    answer: "B",
+    explanation: "Throwing trash and waste into water bodies pollutes the water, harming wildlife and ecosystems."
+},
+{
+    question: "47. How can water pollution affect animals?",
+    options: {
+        A: "It provides them with food",
+        B: "It makes water cleaner",
+        C: "It harms their health and habitats",
+        D: "It helps them live longer"
+    },
+    answer: "C",
+    explanation: "Polluted water can poison animals, reduce their habitat quality, and lead to decreased populations."
+},
+{
+    question: "48. Which of the following is a major cause of air pollution?",
+    options: {
+        A: "Planting flowers",
+        B: "Burning fossil fuels",
+        C: "Walking",
+        D: "Recycling"
+    },
+    answer: "B",
+    explanation: "Burning fossil fuels like coal, oil, and gas releases pollutants into the air, causing air pollution."
+},
+{
+    question: "49. Which method can be used to separate a solid from a liquid in a solution?",
+    options: {
+        A: "Evaporation",
+        B: "Filtration",
+        C: "Condensation",
+        D: "Freezing"
+    },
+    answer: "B",
+    explanation: "Filtration separates a solid from a liquid by passing the mixture through a filter that traps the solid."
+},
+{
+    question: "50. What method would you use to separate salt from saltwater?",
+    options: {
+        A: "Filtration",
+        B: "Evaporation",
+        C: "Decanting",
+        D: "Magnetism"
+    },
+    answer: "B",
+    explanation: "Evaporation can be used to separate salt from saltwater by heating the water to leave salt behind."
+}
+
+        ];
+
+        const quizForm = document.getElementById('quizForm');
+
+        questions.forEach((q, index) => {
+            const questionCard = document.createElement('div');
+            questionCard.classList.add('card', 'mb-3');
+
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+
+            // Question Text
+            const questionText = document.createElement('h5');
+            questionText.classList.add('card-title');
+            questionText.innerHTML = `<strong>${q.question}</strong>`;
+            cardBody.appendChild(questionText);
+
+            // Options
+            for (let option in q.options) {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('form-check');
+
+                const optionInput = document.createElement('input');
+                optionInput.classList.add('form-check-input');
+                optionInput.type = 'radio';
+                optionInput.name = `question${index}`;
+                optionInput.id = `question${index}_option${option}`;
+                optionInput.value = option;
+                optionInput.dataset.correct = option === q.answer;
+
+                const optionLabel = document.createElement('label');
+                optionLabel.classList.add('form-check-label');
+                optionLabel.htmlFor = `question${index}_option${option}`;
+                optionLabel.innerHTML = `<strong>${option}.</strong> ${q.options[option]}`;
+
+                optionDiv.appendChild(optionInput);
+                optionDiv.appendChild(optionLabel);
+
+                cardBody.appendChild(optionDiv);
+            }
+
+            // Feedback Div
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.classList.add('feedback');
+            cardBody.appendChild(feedbackDiv);
+
+            questionCard.appendChild(cardBody);
+            quizForm.appendChild(questionCard);
+
+            // Event Listener for Options
+            const options = optionDivs = cardBody.querySelectorAll('input[type=radio]');
+            options.forEach(optionInput => {
+                optionInput.addEventListener('change', function() {
+                    // Disable all options after selection
+                    options.forEach(opt => opt.disabled = true);
+
+                    const selected = this.value;
+                    const isCorrect = this.dataset.correct === "true";
+                    if (isCorrect) {
+                        this.parentElement.querySelector('label').classList.add('text-success');
+                        feedbackDiv.innerHTML = `<span class="text-success"><i class="bi bi-check-circle"></i> Correct! Great job!</span>`;
+                    } else {
+                        this.parentElement.querySelector('label').classList.add('text-danger');
+                        // Highlight the correct answer
+                        const correctOption = cardBody.querySelector(`input[value="${q.answer}"]`);
+                        if (correctOption) {
+                            correctOption.parentElement.querySelector('label').classList.add('text-success');
+                        }
+                        feedbackDiv.innerHTML = `<span class="text-danger"><i class="bi bi-x-circle"></i> Incorrect. ${q.explanation}</span>`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

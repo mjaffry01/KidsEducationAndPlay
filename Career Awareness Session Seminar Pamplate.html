@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Career Awareness Seminar - Zainabians</title>
+    <!-- Bootstrap CSS -->
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    >
+    <!-- Font Awesome for Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    >
+    <style>
+        body {
+            padding-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .language-selector {
+            margin-bottom: 20px;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .pictogram {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        .btn-voice {
+            margin-top: 10px;
+        }
+        .mission-statement {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .header-bismillah {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .header-salam {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Custom styles for different languages */
+        [lang="ar"] {
+            direction: rtl;
+            text-align: right;
+        }
+        [lang="hi"] {
+            text-align: left;
+        }
+        [lang="en"] {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Selector -->
+    <div class="container language-selector text-center">
+        <button class="btn btn-outline-primary btn-language" data-lang="en">English</button>
+        <button class="btn btn-outline-success btn-language" data-lang="hi">हिंदी</button>
+        <button class="btn btn-outline-info btn-language" data-lang="ar">اردو</button>
+    </div>
+
+    <!-- English Content -->
+    <div class="container content-section" id="content-en" lang="en">
+        <div class="header-bismillah">بسم الله الرحمن الرحيم</div>
+        <div class="header-salam">Assalamu Alaikum wa Rahmatullahi wa Barakatuh</div>
+
+        <h2><i class="fas fa-bullhorn pictogram"></i> Career Awareness Seminar</h2>
+        <p><i class="fas fa-calendar-alt pictogram"></i> <strong>Date:</strong> 2nd October</p>
+        <p><i class="fas fa-clock pictogram"></i> <strong>Time:</strong> 4:00 PM</p>
+        <p><i class="fas fa-map-marker-alt pictogram"></i> <strong>Venue:</strong> IZCC </p>
+        <p><i class="fas fa-users pictogram"></i> <strong>Target Audience:</strong> Women and Children of all age groups</p>
+        <p><i class="fas fa-user-tie pictogram"></i> <strong>Guest Speaker:</strong> Ms. Narjis Sayyed</p>
+
+        <div class="mission-statement">
+            <h3><i class="fas fa-info-circle pictogram"></i> About Zainabians</h3>
+            <p><strong>Empowering Muslim Women for a Fulfilling and Righteous Life</strong></p>
+            <p>Zainabians strives to create a platform for Muslim women that understands their challenges, empowers them, instills confidence, and imparts essential life skills.</p>
+            <p>Our mission is to inspire the community to follow the path of righteousness (<em>Sirat al-Mustaqeem</em>), create a positive impact, and promote a happy, fulfilling life, while standing in resistance against social injustices as we prepare ourselves to contribute to the mission of our awaited Imam.</p>
+        </div>
+
+        <button class="btn btn-primary btn-voice" data-lang="en">Listen in English</button>
+    </div>
+
+    <!-- Hindi Content -->
+    <div class="container content-section" id="content-hi" lang="hi">
+        <div class="header-bismillah">बिस्मिल्लाह हिर रहमानिर रहीम</div>
+        <div class="header-salam">अस्सलामु अलैकुम वा रहमतुल्लाही वा बरकातुहू</div>
+
+        <h2><i class="fas fa-bullhorn pictogram"></i> करियर जागरूकता सेमिनार</h2>
+        <p><i class="fas fa-calendar-alt pictogram"></i> <strong>तारीख:</strong> 2 अक्टूबर</p>
+        <p><i class="fas fa-clock pictogram"></i> <strong>समय:</strong> शाम 4:00 बजे</p>
+        <p><i class="fas fa-map-marker-alt pictogram"></i> <strong>स्थान:</strong> IZCC </p>
+        <p><i class="fas fa-users pictogram"></i> <strong>लक्षित समूह:</strong> सभी आयु वर्ग की महिलाएं और बच्चे</p>
+        <p><i class="fas fa-user-tie pictogram"></i> <strong>मुख्य वक्ता:</strong> नजिस सैयद</p>
+
+        <div class="mission-statement">
+            <h3><i class="fas fa-info-circle pictogram"></i> ज़ैनबियन के बारे में</h3>
+            <p><strong>सम्पूर्ण और धर्मपरायण जीवन के लिए मुस्लिम महिलाओं को सशक्त बनाना</strong></p>
+            <p>ज़ैनबियन का उद्देश्य मुस्लिम महिलाओं के लिए एक ऐसा मंच बनाना है जो उनकी चुनौतियों को समझे, उन्हें सशक्त बनाए, आत्मविश्वास जगाए, और आवश्यक जीवन कौशल प्रदान करे।</p>
+            <p>हमारा मिशन समुदाय को धार्मिक मार्ग (<em>सीरत अल-मुस्तकीम</em>) पर चलने के लिए प्रेरित करना, सकारात्मक प्रभाव डालना, और खुशहाल, पूर्ण जीवन को बढ़ावा देना है, जबकि सामाजिक अन्यायों के खिलाफ खड़े रहकर हम अपने प्रतीक्षित इमाम के मिशन में योगदान के लिए खुद को तैयार करते हैं।</p>
+        </div>
+
+        <button class="btn btn-success btn-voice" data-lang="hi">हिंदी में सुनें</button>
+    </div>
+
+    <!-- Urdu Content -->
+    <div class="container content-section" id="content-ar" lang="ar">
+        <div class="header-bismillah">بسم الله الرحمن الرحيم</div>
+        <div class="header-salam">السلام عليكم ورحمة الله وبركاته</div>
+
+        <h2><i class="fas fa-bullhorn pictogram"></i> کیرئیر آگاہی سیمینار</h2>
+        <p><i class="fas fa-calendar-alt pictogram"></i> <strong>تاریخ:</strong> 2 اکتوبر</p>
+        <p><i class="fas fa-clock pictogram"></i> <strong>وقت:</strong> شام 4:00 بجے</p>
+        <p><i class="fas fa-map-marker-alt pictogram"></i> <strong>مقام:</strong> IZCC </p>
+        <p><i class="fas fa-users pictogram"></i> <strong>ہدف سامعین:</strong> تمام عمر کی خواتین اور بچے</p>
+        <p><i class="fas fa-user-tie pictogram"></i> <strong>مہمان مقرر:</strong> نجس سید</p>
+
+        <div class="mission-statement">
+            <h3><i class="fas fa-info-circle pictogram"></i> زینبیان کے بارے میں</h3>
+            <p><strong>مسلم خواتین کو مکمل اور راست زندگی کے لیے بااختیار بنانا</strong></p>
+            <p>زینبیان کا مقصد مسلم خواتین کے لیے ایک ایسا پلیٹ فارم بنانا ہے جو ان کے چیلنجز کو سمجھتا ہو، انہیں بااختیار بنائے، اعتماد پیدا کرے، اور ضروری زندگی کی مہارتیں فراہم کرے۔</p>
+            <p>ہمارا مشن کمیونٹی کو راستے کی پیروی کرنے کی ترغیب دینا ہے (<em>صراط المستقیم</em>), مثبت اثر پیدا کرنا، اور خوشحال، مکمل زندگی کو فروغ دینا ہے، جبکہ ہم سماجی ناانصافیوں کے خلاف کھڑے رہتے ہوئے اپنے منتظر امام کے مشن میں حصہ لینے کے لیے خود کو تیار کرتے ہیں۔</p>
+        </div>
+
+        <button class="btn btn-info btn-voice" data-lang="ar">اردو میں سنیں</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-3 mt-4">
+        <p>&copy; 2023 Zainabians Group. All rights reserved.</p>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            // Show English content by default
+            $('#content-en').addClass('active');
+
+            // Language selection
+            $('.btn-language').on('click', function() {
+                var lang = $(this).data('lang');
+                $('.content-section').removeClass('active');
+                $('#content-' + lang).addClass('active');
+            });
+
+            // Voice narration
+            $('.btn-voice').on('click', function() {
+                var lang = $(this).data('lang');
+                var content = $('#content-' + lang).text();
+                var utterance = new SpeechSynthesisUtterance(content);
+
+                // Set language for speech synthesis
+                if (lang === 'en') {
+                    utterance.lang = 'en-US';
+                } else if (lang === 'hi') {
+                    utterance.lang = 'hi-IN';
+                } else if (lang === 'ar') {
+                    utterance.lang = 'ur-PK';
+                }
+
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+
+                // Speak the content
+                window.speechSynthesis.speak(utterance);
+            });
+        });
+    </script>
+
+</body>
+</html>

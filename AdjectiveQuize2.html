@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjective Finder Quiz</title>
+    <style>
+        .correct {
+            background-color: green;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: red;
+            color: white;
+        }
+
+        span {
+            padding: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Adjective Finder Quiz</h1>
+    <p>Click on the adjectives in the passage below.</p>
+
+    <div id="passage">
+        <p>
+            On a <span onclick="checkWord(this, 'correct')">sunny</span> morning, Sarah decided to take a walk through the <span onclick="checkWord(this, 'correct')">beautiful</span> park near her house. The <span onclick="checkWord(this, 'correct')">lush</span> green trees swayed in the <span onclick="checkWord(this, 'correct')">gentle</span> breeze, and the birds chirped <span onclick="checkWord(this, 'incorrect')">happily</span> around her. The air was <span onclick="checkWord(this, 'correct')">fresh</span> and cool, making it a <span onclick="checkWord(this, 'correct')">perfect</span> day for an outdoor stroll. 
+
+            As Sarah continued along the winding path, she noticed a <span onclick="checkWord(this, 'correct')">small</span> pond filled with <span onclick="checkWord(this, 'correct')">colorful</span> fish swimming gracefully. She sat on a <span onclick="checkWord(this, 'correct')">nearby</span> bench, enjoying the peaceful sounds of nature. The <span onclick="checkWord(this, 'correct')">clear</span> blue sky stretched endlessly above her, and the sun's <span onclick="checkWord(this, 'correct')">warm</span> rays made her feel <span onclick="checkWord(this, 'correct')">relaxed</span> and <span onclick="checkWord(this, 'correct')">happy</span>.
+
+            Suddenly, a group of <span onclick="checkWord(this, 'correct')">young</span> children ran past her, laughing and chasing each other with <span onclick="checkWord(this, 'correct')">big</span> smiles on their faces. Their <span onclick="checkWord(this, 'correct')">joyful</span> energy filled the air, making Sarah smile. She watched as a <span onclick="checkWord(this, 'correct')">little</span> girl pointed excitedly at a <span onclick="checkWord(this, 'correct')">bright</span> yellow butterfly fluttering by. 
+
+            After spending some time at the park, Sarah decided to visit the <span onclick="checkWord(this, 'correct')">cozy</span> café down the street. She ordered a <span onclick="checkWord(this, 'correct')">delicious</span> cup of coffee and sat by the window. From her seat, she had a <span onclick="checkWord(this, 'correct')">clear</span> view of the bustling street outside. People were walking briskly, cars were honking, and a <span onclick="checkWord(this, 'correct')">friendly</span> street vendor was selling <span onclick="checkWord(this, 'correct')">tasty</span> snacks to passersby.
+
+            As the day came to an end, Sarah reflected on how <span onclick="checkWord(this, 'correct')">wonderful</span> it felt to have a relaxing day full of <span onclick="checkWord(this, 'correct')">simple</span> joys. The <span onclick="checkWord(this, 'correct')">calm</span> and <span onclick="checkWord(this, 'correct')">peaceful</span> park, the <span onclick="checkWord(this, 'correct')">tasty</span> coffee, and the <span onclick="checkWord(this, 'correct')">warm</span> smiles from people she encountered made her day truly special.
+        </p>
+    </div>
+
+    <script>
+        function checkWord(element, status) {
+            if (status === 'correct') {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+            }
+        }
+    </script>
+
+</body>
+</html>

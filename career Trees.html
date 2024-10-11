@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprehensive Career Guidance After 12th Standard</title>
+    <!-- Bootstrap CSS -->
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    >
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .tree ul {
+            list-style-type: none;
+            position: relative;
+            padding-left: 1em;
+            transition: all 0.5s;
+            display: none; /* Hide all subtrees by default */
+        }
+        .tree ul.root {
+            display: block; /* Show only the root list */
+        }
+        .tree ul ul {
+            margin-left: 1em;
+            position: relative;
+        }
+        .tree ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 1px solid #ccc;
+            height: 100%;
+        }
+        .tree li {
+            margin: 0;
+            padding: 0.5em 0;
+            position: relative;
+        }
+        .tree li::before, .tree li::after {
+            content: '';
+            position: absolute;
+            left: -1em;
+        }
+        .tree li::before {
+            border-top: 1px solid #ccc;
+            top: 1em;
+            width: 1em;
+            height: 0;
+        }
+        .tree li::after {
+            border-left: 1px solid #ccc;
+            height: 1em;
+            top: 0;
+            width: 0;
+        }
+        .tree li:last-child::after {
+            display: none;
+        }
+        .tree li .toggle-icon {
+            width: 12px;
+            display: inline-block;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .tree li span {
+            cursor: pointer;
+        }
+        .tree li span:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        /* Additional styling for better visibility */
+        .tree li {
+            line-height: 1.5em;
+        }
+        .tree li span {
+            font-weight: 500;
+        }
+        .tree li span strong {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Comprehensive Career Guidance After 12th Standard</h1>
+        <p>Explore various career paths and courses</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search for careers or courses...">
+        </div>
+
+        <!-- Career Tree -->
+        <div class="tree">
+            <ul id="careerTree" class="root">
+                <!-- Science Stream -->
+                <li>
+                    <span class="toggle-icon">+</span>
+                    <span><strong>Science Stream</strong></span>
+                    <ul>
+                        <!-- PCM -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>With Mathematics (PCM)</strong></span>
+                            <ul>
+                                <!-- Engineering Fields -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Engineering Fields (B.Tech/B.E.)</strong></span>
+                                    <ul>
+                                        <!-- Mechanical Engineering -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Mechanical Engineering</strong></span>
+                                            <ul>
+                                                <li>Automotive Industry</li>
+                                                <li>Aerospace Industry</li>
+                                                <li>Manufacturing Plants</li>
+                                                <li>Research and Development</li>
+                                                <li>Further Studies: M.Tech, MBA</li>
+                                            </ul>
+                                        </li>
+                                        <!-- Electrical Engineering -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Electrical Engineering</strong></span>
+                                            <ul>
+                                                <li>Power Generation Companies</li>
+                                                <li>Electronics Industry</li>
+                                                <li>Robotics and Automation</li>
+                                                <li>Research Institutions</li>
+                                                <li>Further Studies: M.Tech, Ph.D.</li>
+                                            </ul>
+                                        </li>
+                                        <!-- Civil Engineering -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Civil Engineering</strong></span>
+                                            <ul>
+                                                <li>Construction Companies</li>
+                                                <li>Urban Development Authorities</li>
+                                                <li>Infrastructure Projects</li>
+                                                <li>Environmental Engineering</li>
+                                                <li>Further Studies: M.Tech in Structural Engineering</li>
+                                            </ul>
+                                        </li>
+                                        <!-- Computer Science Engineering -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Computer Science Engineering</strong></span>
+                                            <ul>
+                                                <li>Software Development</li>
+                                                <li>Data Science and Analytics</li>
+                                                <li>Artificial Intelligence and Machine Learning</li>
+                                                <li>Cybersecurity</li>
+                                                <li>Further Studies: M.Tech, MS</li>
+                                            </ul>
+                                        </li>
+                                        <!-- Electronics and Communication Engineering -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Electronics and Communication Engineering</strong></span>
+                                            <ul>
+                                                <li>Telecommunication Sector</li>
+                                                <li>Embedded Systems</li>
+                                                <li>VLSI Design</li>
+                                                <li>IoT Development</li>
+                                                <li>Further Studies: M.Tech, Ph.D.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Architecture -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Architecture (B.Arch)</strong></span>
+                                    <ul>
+                                        <li>Architectural Firms</li>
+                                        <li>Urban Planning</li>
+                                        <li>Interior Design</li>
+                                        <li>Landscape Architecture</li>
+                                        <li>Further Studies: M.Arch</li>
+                                    </ul>
+                                </li>
+                                <!-- Pure Sciences -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Pure Sciences (B.Sc)</strong></span>
+                                    <ul>
+                                        <!-- Mathematics -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Mathematics</strong></span>
+                                            <ul>
+                                                <li>Academia and Teaching</li>
+                                                <li>Research Scientist</li>
+                                                <li>Data Analyst</li>
+                                                <li>Actuarial Science</li>
+                                                <li>Further Studies: M.Sc, Ph.D.</li>
+                                            </ul>
+                                        </li>
+                                        <!-- Physics -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Physics</strong></span>
+                                            <ul>
+                                                <li>Research Laboratories</li>
+                                                <li>Astrophysics</li>
+                                                <li>Quantum Computing</li>
+                                                <li>Nuclear Physics</li>
+                                                <li>Further Studies: M.Sc, Ph.D.</li>
+                                            </ul>
+                                        </li>
+                                        <!-- Chemistry -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Chemistry</strong></span>
+                                            <ul>
+                                                <li>Chemical Industry</li>
+                                                <li>Pharmaceuticals</li>
+                                                <li>Research and Development</li>
+                                                <li>Analytical Chemist</li>
+                                                <li>Further Studies: M.Sc, Ph.D.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Computer and IT Fields -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Computer and IT Fields</strong></span>
+                                    <ul>
+                                        <!-- BCA -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Bachelor of Computer Applications (BCA)</strong></span>
+                                            <ul>
+                                                <li>Software Developer</li>
+                                                <li>Web Developer</li>
+                                                <li>System Analyst</li>
+                                                <li>Database Administrator</li>
+                                                <li>Further Studies: MCA, MBA</li>
+                                            </ul>
+                                        </li>
+                                        <!-- B.Sc Computer Science -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>B.Sc Computer Science</strong></span>
+                                            <ul>
+                                                <li>Software Engineer</li>
+                                                <li>Data Scientist</li>
+                                                <li>Network Administrator</li>
+                                                <li>Cybersecurity Analyst</li>
+                                                <li>Further Studies: M.Sc CS, MCA</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Merchant Navy -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Merchant Navy</strong></span>
+                                    <ul>
+                                        <li>Deck Officer</li>
+                                        <li>Marine Engineer</li>
+                                        <li>Navigation Officer</li>
+                                        <li>Electro-Technical Officer</li>
+                                        <li>Further Certifications: STCW Courses</li>
+                                    </ul>
+                                </li>
+                                <!-- NDA -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>National Defense Academy (NDA)</strong></span>
+                                    <ul>
+                                        <li>Army Officer</li>
+                                        <li>Navy Officer</li>
+                                        <li>Air Force Officer</li>
+                                        <li>Speciali    tions: Infantry, Artillery, Signals, etc.</li>
+                                        <li>Further Promotions and Training</li>
+                                    </ul>
+                                </li>
+                                <!-- Pilot Training -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Commercial Pilot Training</strong></span>
+                                    <ul>
+                                        <li>Student Pilot License (SPL)</li>
+                                        <li>Private Pilot License (PPL)</li>
+                                        <li>Commercial Pilot License (CPL)</li>
+                                        <li>Airline Transport Pilot License (ATPL)</li>
+                                        <li>Career as a Pilot in Airlines</li>
+                                    </ul>
+                                </li>
+                                <!-- Honours Courses -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Honours Courses</strong></span>
+                                    <ul>
+                                        <li>Mathematics Honours</li>
+                                        <li>Economics Honours</li>
+                                        <li>Statistics Honours</li>
+                                        <li>Physics Honours</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- PCB -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>With Biology (PCB)</strong></span>
+                            <ul>
+                                <!-- Medical Fields -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Medical Fields</strong></span>
+                                    <ul>
+                                        <!-- MBBS -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>MBBS</strong></span>
+                                            <ul>
+                                                <li>Complete MBBS Degree (5.5 years)</li>
+                                                <li>Internship</li>
+                                                <li>Register with Medical Council</li>
+                                                <li>General Physician</li>
+                                                <li>Specialization through MD/MS</li>
+                                                <li>Super Specialization (DM/MCh)</li>
+                                            </ul>
+                                        </li>
+                                        <!-- BDS -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Bachelor of Dental Surgery (BDS)</strong></span>
+                                            <ul>
+                                                <li>Complete BDS Degree (5 years)</li>
+                                                <li>Internship</li>
+                                                <li>Register with Dental Council</li>
+                                                <li>Practice as a Dentist</li>
+                                                <li>Specialization through MDS</li>
+                                            </ul>
+                                        </li>
+                                        <!-- BAMS -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Bachelor of Ayurvedic Medicine and Surgery (BAMS)</strong></span>
+                                            <ul>
+                                                <li>Practice as an Ayurvedic Doctor</li>
+                                                <li>Herbal Medicine Research</li>
+                                                <li>Further Studies: MD in Ayurveda</li>
+                                            </ul>
+                                        </li>
+                                        <!-- BHMS -->
+                                        <li>
+                                            <span class="toggle-icon">+</span>
+                                            <span><strong>Bachelor of Homeopathic Medicine and Surgery (BHMS)</strong></span>
+                                            <ul>
+                                                <li>Practice as a Homeopathic Doctor</li>
+                                                <li>Research in Homeopathy</li>
+                                                <li>Further Studies: MD in Homeopathy</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Allied Health Sciences -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Allied Health Sciences</strong></span>
+                                    <ul>
+                                        <li>Physiotherapy (BPT)</li>
+                                        <li>Occupational Therapy</li>
+                                        <li>Medical Lab Technology</li>
+                                        <li>Optometry</li>
+                                        <li>Radiology</li>
+                                    </ul>
+                                </li>
+                                <!-- Biotechnology and Life Sciences -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Biotechnology and Life Sciences</strong></span>
+                                    <ul>
+                                        <li>Research Scientist</li>
+                                        <li>Biotechnologist</li>
+                                        <li>Microbiologist</li>
+                                        <li>Biochemist</li>
+                                        <li>Further Studies: M.Sc, Ph.D.</li>
+                                    </ul>
+                                </li>
+                                <!-- Agriculture and Related Fields -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Agriculture and Related Fields</strong></span>
+                                    <ul>
+                                        <li>Agricultural Scientist</li>
+                                        <li>Horticulturist</li>
+                                        <li>Soil Scientist</li>
+                                        <li>Plant Breeder</li>
+                                        <li>Further Studies: M.Sc Agriculture</li>
+                                    </ul>
+                                </li>
+                                <!-- Other Fields -->
+                                <li>Environmental Science</li>
+                                <li>Psychology</li>
+                                <li>Forensic Science</li>
+                            </ul>
+                        </li>
+                        <!-- PCMB -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>With Mathematics and Biology (PCMB)</strong></span>
+                            <ul>
+                                <li>Eligible for both PCM and PCB career paths</li>
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Unique Fields</strong></span>
+                                    <ul>
+                                        <li>Biotechnology Engineering</li>
+                                        <li>Biomedical Engineering</li>
+                                        <li>Genetic Engineering</li>
+                                        <li>Food Technology</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Additional Options -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Additional Options for Science Students</strong></span>
+                            <ul>
+                                <!-- Integrated Law Courses -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Integrated Law Courses (B.Sc LL.B)</strong></span>
+                                    <ul>
+                                        <li>Lawyer</li>
+                                        <li>Legal Advisor</li>
+                                        <li>Corporate Lawyer</li>
+                                        <li>Further Studies: LLM</li>
+                                    </ul>
+                                </li>
+                                <!-- Design and Planning -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Design and Planning</strong></span>
+                                    <ul>
+                                        <li>Fashion Designer</li>
+                                        <li>Product Designer</li>
+                                        <li>Graphic Designer</li>
+                                        <li>Interior Designer</li>
+                                        <li>Further Studies: Master's in Design</li>
+                                    </ul>
+                                </li>
+                                <!-- Pure Sciences Research -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Pure Sciences Research</strong></span>
+                                    <ul>
+                                        <li>Research Scientist</li>
+                                        <li>Professor/Lecturer</li>
+                                        <li>Work in Research Institutes like IISER, ISRO, DRDO</li>
+                                        <li>Further Studies: Integrated Ph.D.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Commerce Stream -->
+                <li>
+                    <span class="toggle-icon">+</span>
+                    <span><strong>Commerce Stream</strong></span>
+                    <ul>
+                        <!-- Finance and Accounting -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Finance and Accounting</strong></span>
+                            <ul>
+                                <!-- Chartered Accountant (CA) -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Chartered Accountant (CA)</strong></span>
+                                    <ul>
+                                        <li>Register with ICAI</li>
+                                        <li>Clear Foundation, Intermediate, and Final Exams</li>
+                                        <li>Complete Articleship Training</li>
+                                        <li>Career in Auditing, Taxation, Finance</li>
+                                    </ul>
+                                </li>
+                                <!-- Cost and Management Accountant (CMA) -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Cost and Management Accountant (CMA)</strong></span>
+                                    <ul>
+                                        <li>Register with ICMAI</li>
+                                        <li>Clear Foundation, Intermediate, and Final Exams</li>
+                                        <li>Career in Cost Accounting, Financial Management</li>
+                                    </ul>
+                                </li>
+                                <!-- Bachelor of Commerce (B.Com) -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Commerce (B.Com)</strong></span>
+                                    <ul>
+                                        <li>Specializations: Accounting, Finance, Marketing</li>
+                                        <li>Careers: Accountant, Financial Analyst, Banker</li>
+                                        <li>Further Studies: M.Com, MBA</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Business and Management -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Business and Management</strong></span>
+                            <ul>
+                                <!-- Bachelor of Business Administration (BBA) -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Business Administration (BBA)</strong></span>
+                                    <ul>
+                                        <li>Specializations: HR, Marketing, Finance</li>
+                                        <li>Careers: Manager, Business Analyst, Consultant</li>
+                                        <li>Further Studies: MBA</li>
+                                    </ul>
+                                </li>
+                                <!-- Bachelor of Management Studies (BMS) -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Management Studies (BMS)</strong></span>
+                                    <ul>
+                                        <li>Focus on Management Techniques</li>
+                                        <li>Careers: Operations Manager, Project Manager</li>
+                                        <li>Further Studies: MBA</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Economics and Statistics -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Economics and Statistics</strong></span>
+                            <ul>
+                                <!-- Bachelor of Economics -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Economics</strong></span>
+                                    <ul>
+                                        <li>Careers: Economist, Data Analyst, Policy Maker</li>
+                                        <li>Work in Banks, Government Agencies, Research Firms</li>
+                                        <li>Further Studies: M.A. Economics, Ph.D.</li>
+                                    </ul>
+                                </li>
+                                <!-- Bachelor of Statistics -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Statistics</strong></span>
+                                    <ul>
+                                        <li>Careers: Statistician, Data Scientist</li>
+                                        <li>Work in Research Organizations, IT Companies</li>
+                                        <li>Further Studies: M.Stat, Ph.D.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Law -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Integrated Law Courses (B.Com LL.B / BBA LL.B)</strong></span>
+                            <ul>
+                                <li>Corporate Lawyer</li>
+                                <li>Legal Advisor</li>
+                                <li>Compliance Officer</li>
+                                <li>Further Studies: LLM</li>
+                            </ul>
+                        </li>
+                        <!-- Other Commerce Options -->
+                        <li>Company Secretary (CS)</li>
+                        <li>Actuarial Science</li>
+                        <li>Banking and Insurance</li>
+                        <li>Hotel Management</li>
+                    </ul>
+                </li>
+                <!-- Arts/Humanities Stream -->
+                <li>
+                    <span class="toggle-icon">+</span>
+                    <span><strong>Arts/Humanities Stream</strong></span>
+                    <ul>
+                        <!-- Humanities and Social Sciences -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Humanities and Social Sciences</strong></span>
+                            <ul>
+                                <!-- Bachelor of Arts (B.A.) -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Bachelor of Arts (B.A.)</strong></span>
+                                    <ul>
+                                        <li>Subjects: History, Geography, Political Science, etc.</li>
+                                        <li>Careers: Teacher, Researcher, Civil Services</li>
+                                        <li>Further Studies: M.A., Ph.D.</li>
+                                    </ul>
+                                </li>
+                                <!-- Psychology -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Psychology</strong></span>
+                                    <ul>
+                                        <li>Clinical Psychologist</li>
+                                        <li>Counselor</li>
+                                        <li>Researcher</li>
+                                        <li>Further Studies: M.A. Psychology, M.Phil.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Mass Communication and Media -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Mass Communication and Media</strong></span>
+                            <ul>
+                                <!-- BJMC -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>BJMC</strong></span>
+                                    <ul>
+                                        <li>Journalist</li>
+                                        <li>News Reporter</li>
+                                        <li>Media Planner</li>
+                                        <li>Further Studies: MJMC</li>
+                                    </ul>
+                                </li>
+                                <!-- Film and Television Studies -->
+                                <li>
+                                    <span class="toggle-icon">+</span>
+                                    <span><strong>Film and Television Studies</strong></span>
+                                    <ul>
+                                        <li>Director</li>
+                                        <li>Producer</li>
+                                        <li>Screenwriter</li>
+                                        <li>Cinematographer</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Law -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Integrated Law Courses (B.A. LL.B)</strong></span>
+                            <ul>
+                                <li>Lawyer</li>
+                                <li>Judge</li>
+                                <li>Legal Consultant</li>
+                                <li>Further Studies: LLM</li>
+                            </ul>
+                        </li>
+                        <!-- Performing Arts
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Performing Arts</strong></span>
+                            <ul>
+                                <li>Music</li>
+                                <li>Dance</li>
+                                <li>Theatre</li>
+                                <li>Choreography</li>
+                                <li>Acting</li>
+                            </ul>
+                        </li> -->
+                        <!-- Civil Services Preparation -->
+                        <li>
+                            <span class="toggle-icon">+</span>
+                            <span><strong>Civil Services Preparation</strong></span>
+                            <ul>
+                                <li>Indian Administrative Service (IAS)</li>
+                                <li>Indian Police Service (IPS)</li>
+                                <li>Indian Foreign Service (IFS)</li>
+                                <li>Preparation through UPSC Examination</li>
+                            </ul>
+                        </li>
+                        <!-- Other Arts Options -->
+                        <li>Fashion Design</li>
+                        <li>Interior Design</li>
+                        <li>Foreign Languages</li>
+                        <li>Social Work</li>
+                    </ul>
+                </li>
+                <!-- Vocational Courses -->
+                <li>
+                    <span class="toggle-icon">+</span>
+                    <span><strong>Vocational Courses</strong></span>
+                    <ul>
+                        <li>Hotel Management and Catering Technology</li>
+                        <li>Fashion Technology</li>
+                        <li>Graphic Design</li>
+                        <li>Animation and Multimedia</li>
+                        <li>Event Management</li>
+                        <li>Photography</li>
+                        <li>Jewelry Design</li>
+                        <li>Beauty and Wellness</li>
+                    </ul>
+                </li>
+                <!-- Defense Services -->
+                <li>
+                    <span class="toggle-icon">+</span>
+                    <span><strong>Defense Services</strong></span>
+                    <ul>
+                        <li>National Defense Academy (NDA)</li>
+                        <li>Technical Entry Scheme (TES)</li>
+                        <li>Combined Defense Services Examination (CDSE)</li>
+                        <li>Short Service Commission (SSC)</li>
+                    </ul>
+                </li>
+                <!-- Alternative Options -->
+                <li>
+                    <span class="toggle-icon">+</span>
+                    <span><strong>Alternative Options</strong></span>
+                    <ul>
+                        <li>Study Abroad</li>
+                        <li>Entrepreneurship</li>
+                        <li>Online Courses and Certifications</li>
+                        <li>Gap Year Activities</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-primary text-white text-center py-3 mt-4">
+        <p>&copy; 2024 Zainabians Group. All rights reserved.</p>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            // Initialize tree view
+            $('.tree ul').hide(); // Hide all subtrees
+            $('.tree ul.root').show(); // Show only the root list
+            $('.tree li:has(ul)').addClass('parent_li');
+            $('.tree li.parent_li > .toggle-icon').attr('title', 'Expand this branch');
+            $('.tree li.parent_li > .toggle-icon').text('+');
+
+            // Toggle branches when clicking on the toggle-icon or the text
+            $('.tree li.parent_li > .toggle-icon, .tree li.parent_li > span').on('click', function(e) {
+                var parent_li = $(this).parent('li.parent_li');
+                var children = parent_li.find(' > ul');
+                if (children.is(':visible')) {
+                    children.hide('fast');
+                    parent_li.find(' > .toggle-icon').text('+');
+                    parent_li.find(' > .toggle-icon').attr('title', 'Expand this branch');
+                } else {
+                    children.show('fast');
+                    parent_li.find(' > .toggle-icon').text('-');
+                    parent_li.find(' > .toggle-icon').attr('title', 'Collapse this branch');
+                }
+                e.stopPropagation();
+            });
+
+            // Search functionality
+            $('#searchInput').on('keyup', function() {
+                var searchText = $(this).val().toLowerCase();
+                if (searchText === '') {
+                    // Reset tree view
+                    $('.tree ul').hide();
+                    $('.tree ul.root').show();
+                    $('.tree li.parent_li > .toggle-icon').text('+');
+                } else {
+                    $('.tree li').each(function() {
+                        var listItemText = $(this).text().toLowerCase();
+                        if (listItemText.indexOf(searchText) > -1) {
+                            $(this).show();
+                            $(this).parents('ul').show();
+                            $(this).parents('li').find(' > .toggle-icon').text('-');
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

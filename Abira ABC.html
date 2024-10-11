@@ -1,0 +1,205 @@
+<!-- 
+
+This HTML document creates an interactive alphabet game for kids using Bootstrap and jQuery. 
+The game displays images of objects and prompts the user to select the correct starting letter for each object.
+
+Key Features:
+- Responsive design using Bootstrap for layout and styling.
+- Dynamic generation of images and letter buttons based on an alphabet array.
+- Text-to-speech functionality to read out questions and feedback.
+- Interactive elements with hover effects and click events.
+
+Sections:
+1. Head Section:
+    - Includes meta tags for character set and viewport settings.
+    - Links to Bootstrap CSS for styling.
+    - Custom CSS for additional styling of the game elements.
+
+2. Body Section:
+    - Container for the game content, including a title, instructions, image container, letter buttons, and result message.
+    - Images and letter buttons are dynamically inserted into the respective containers.
+
+3. Script Section:
+    - jQuery and Bootstrap JS for interactivity and functionality.
+    - Alphabet data array containing letters, words, and image URLs.
+    - Functions to generate image elements and letter buttons.
+    - Text-to-speech function to provide auditory feedback.
+    - Event listeners for image and letter button clicks to handle game logic and provide feedback.
+
+Usage:
+- Open the HTML file in a web browser.
+- Click on an image to hear the question and see the prompt.
+- Click on the correct letter button to receive feedback.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Game for Kids</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .image-container {
+            margin-top: 30px;
+        }
+        .object-image {
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        .object-image:hover {
+            transform: scale(1.1);
+        }
+        .letters-container {
+            margin-top: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .letter-button {
+            margin: 5px;
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 0;
+        }
+        .result-message {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Alphabet Game for Kids</h1>
+        <p>Click on an image and choose the correct starting letter!</p>
+
+        <div class="image-container row justify-content-center" id="imagesRow">
+            <!-- Images will be dynamically inserted here -->
+        </div>
+
+        <div class="letters-container row justify-content-center" id="lettersRow">
+            <!-- Letter buttons will be dynamically inserted here -->
+        </div>
+
+        <div class="result-message" id="resultMessage"></div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Alphabet data: Letter, Word, and Image URL
+            const alphabet = [
+                { letter: "A", word: "Apple", img: "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" },
+                { letter: "B", word: "Ball", img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Football_iuq.jpg" },
+                { letter: "C", word: "Cat", img: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" },
+                { letter: "D", word: "Dog", img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Golde33443.jpg" },
+                { letter: "E", word: "Elephant", img: "https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg" },
+                { letter: "F", word: "Fish", img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Goldfish3.jpg" },
+                { letter: "G", word: "Guitar", img: "https://upload.wikimedia.org/wikipedia/commons/4/45/GuitareClassique5.png" },
+                { letter: "H", word: "Hat", img: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Baseball_cap_front.jpg" },
+                { letter: "I", word: "Ice Cream", img: "https://upload.wikimedia.org/wikipedia/commons/0/06/Strawberry_ice_cream_cone_%28cropped%29.jpg" },
+                { letter: "J", word: "Juice", img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Orange_Juice_Poured_Into_Glass.jpg" },
+                { letter: "K", word: "Kite", img: "https://upload.wikimedia.org/wikipedia/commons/1/17/Kite_in_flight.jpg" },
+                { letter: "L", word: "Lion", img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg" },
+                { letter: "M", word: "Moon", img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg" },
+                { letter: "N", word: "Nest", img: "https://upload.wikimedia.org/wikipedia/commons/8/86/Red_wood_nest.jpg" },
+                { letter: "O", word: "Orange", img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg" },
+                { letter: "P", word: "Panda", img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG" },
+                { letter: "Q", word: "Queen", img: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Queen_of_Spain_Louise.JPG" },
+                { letter: "R", word: "Rabbit", img: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Brown_Rabbit_in_Nature.jpg" },
+                { letter: "S", word: "Sun", img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg" },
+                { letter: "T", word: "Tree", img: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Tree_Rock_Stanley_Park_05.JPG" },
+                { letter: "U", word: "Umbrella", img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Umbrella.jpg" },
+                { letter: "V", word: "Violin", img: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Violin_VL100.png" },
+                { letter: "W", word: "Whale", img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Humpback_Whale_underwater.jpg" },
+                { letter: "X", word: "Xylophone", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Xylophone.jpg" },
+                { letter: "Y", word: "Yacht", img: "https://upload.wikimedia.org/wikipedia/commons/3/35/Yacht_on_the_water.jpg" },
+                { letter: "Z", word: "Zebra", img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Zebra_Botswana.jpg" }
+            ];
+
+            let correctLetter = ""; // To store the current correct letter
+
+            // Function to generate image elements
+            function generateImages() {
+                const imagesRow = $("#imagesRow");
+                alphabet.forEach(item => {
+                    const imgCol = $(`
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <img src="${item.img}" alt="${item.word}" class="img-fluid object-image" data-letter="${item.letter}" width="100" onerror="this.src='/path/to/fallback/image.png';">
+                            <p>${item.word}</p>
+                        </div>
+                    `);
+                    imagesRow.append(imgCol);
+                });
+            }
+
+            // Function to generate letter buttons
+            function generateLetterButtons() {
+                const lettersRow = $("#lettersRow");
+                alphabet.forEach(item => {
+                    const btn = $(`
+                        <button class="btn btn-primary letter-button" data-letter="${item.letter}">${item.letter}</button>
+                    `);
+                    lettersRow.append(btn);
+                });
+            }
+
+            // Function to convert text to speech with expression
+            function speakText(text, pitch = 1, rate = 1) {
+                let speech = new SpeechSynthesisUtterance();
+                speech.lang = 'en-US';  // Set the language
+                speech.text = text;
+                speech.volume = 1;      // Volume level from 0 to 1
+                speech.rate = rate;     // Speech rate (speed)
+                speech.pitch = pitch;   // Pitch level from 0 to 2
+                window.speechSynthesis.speak(speech);
+            }
+
+            // Initialize the game by generating images and buttons
+            generateImages();
+            generateLetterButtons();
+
+            // Event listener for image clicks
+            $(document).on("click", ".object-image", function () {
+                correctLetter = $(this).data("letter");
+                const word = alphabet.find(item => item.letter === correctLetter).word;
+                const question = `Which letter does ${word} start with?`;
+                speakText(question, 1.2, 1);
+                $("#resultMessage").text(question).css("color", "black");
+            });
+
+            // Event listener for letter button clicks
+            $(document).on("click", ".letter-button", function () {
+                if (!correctLetter) {
+                    speakText("Please click on an image first.", 1, 1);
+                    $("#resultMessage").text("Please click on an image first.").css("color", "orange");
+                    return;
+                }
+
+                const selectedLetter = $(this).data("letter");
+
+                if (selectedLetter === correctLetter) {
+                    speakText("Yes! Very good!", 1.5, 1.2); // Higher pitch and faster for positive feedback
+                    $("#resultMessage").text("Yes! Very good!").css("color", "green");
+                    correctLetter = ""; // Reset after correct answer
+                } else {
+                    speakText("No, try again.", 0.8, 0.9); // Lower pitch and slower for correction
+                    $("#resultMessage").text("No, try again.").css("color", "red");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

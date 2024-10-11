@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability Quiz for Grade 4, 5 & 6</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .quiz-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .pictogram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .item {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+        }
+        .option-btn {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        #result {
+            display: none;
+        }
+        #timer {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container quiz-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Probability Quiz</h2>
+        <div id="timer">33:00</div>
+    </div>
+    <div id="quiz">
+        <div id="question-container">
+            <!-- Question will be injected here -->
+        </div>
+        <div id="pictogram" class="pictogram">
+            <!-- Pictogram will be generated here -->
+        </div>
+        <div id="options" class="mt-3">
+            <!-- Options will be injected here -->
+        </div>
+        <button id="next-btn" class="btn btn-primary mt-3" disabled>Next</button>
+    </div>
+    <div id="result" class="text-center">
+        <h3>Your Score: <span id="score"></span>/<span id="total"></span></h3>
+        <p id="performance-message"></p>
+        <button id="restart-btn" class="btn btn-success mt-3">Restart Quiz</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        const quizData = [
+            {
+                question: "Look at the pictogram below. What is the probability of picking a red candy?",
+                items: [
+                    {color: 'red', quantity: 5},
+                    {color: 'blue', quantity: 5},
+                ],
+                options: ["1/2", "1/4", "3/4", "1/3"],
+                answer: "1/2"
+            },
+            {
+                question: "If there are 6 apples and 2 oranges, what is the probability of picking an orange?",
+                items: [
+                    {color: 'green', quantity: 6},
+                    {color: 'orange', quantity: 2},
+                ],
+                options: ["1/4", "1/2", "2/3", "3/4"],
+                answer: "1/4" // Corrected answer
+            },
+            {
+                question: "In a bag of 10 marbles, 4 are blue. What is the probability of drawing a blue marble?",
+                items: [
+                    {color: 'blue', quantity: 4},
+                    {color: 'gray', quantity: 6},
+                ],
+                options: ["2/5", "1/2", "3/5", "4/5"],
+                answer: "2/5"
+            },
+            {
+                question: "There are 5 green, 3 yellow, and 2 red flowers. What is the probability of picking a yellow flower?",
+                items: [
+                    {color: 'green', quantity: 5},
+                    {color: 'yellow', quantity: 3},
+                    {color: 'red', quantity: 2},
+                ],
+                options: ["1/2", "3/10", "3/5", "2/5"],
+                answer: "3/10"
+            },
+            {
+                question: "If you roll a dice, what is the probability of getting an even number?",
+                items: [
+                    {label: '1', color: 'lightgray', quantity: 1},
+                    {label: '2', color: 'lightblue', quantity: 1},
+                    {label: '3', color: 'lightgray', quantity: 1},
+                    {label: '4', color: 'lightblue', quantity: 1},
+                    {label: '5', color: 'lightgray', quantity: 1},
+                    {label: '6', color: 'lightblue', quantity: 1},
+                ],
+                options: ["1/2", "1/3", "2/3", "3/4"],
+                answer: "1/2"
+            },
+            {
+                question: "There are 8 red balls and 2 blue balls in a box. What is the probability of picking a blue ball?",
+                items: [
+                    {color: 'red', quantity: 8},
+                    {color: 'blue', quantity: 2},
+                ],
+                options: ["1/5", "2/5", "3/5", "4/5"],
+                answer: "1/5"
+            },
+            {
+                question: "In a class of 20 students, 5 have brown hair. What is the probability of selecting a student with brown hair?",
+                items: [
+                    {color: 'brown', quantity: 5},
+                    {color: 'black', quantity: 15},
+                ],
+                options: ["1/4", "1/5", "1/2", "3/4"],
+                answer: "1/4"
+            },
+            {
+                question: "A spinner has 4 equal sections: red, blue, green, and yellow. What is the probability it lands on green?",
+                items: [
+                    {color: 'red', quantity: 1},
+                    {color: 'blue', quantity: 1},
+                    {color: 'green', quantity: 1},
+                    {color: 'yellow', quantity: 1},
+                ],
+                options: ["1/2", "1/4", "1/3", "2/5"],
+                answer: "1/4"
+            },
+            {
+                question: "There are 12 pencils: 6 are sharpened and 6 are not. What is the probability of picking a sharpened pencil?",
+                items: [
+                    {label: 'Sharpened', color: 'yellow', quantity: 6},
+                    {label: 'Not Sharpened', color: 'gray', quantity: 6},
+                ],
+                options: ["1/2", "1/3", "2/3", "3/4"],
+                answer: "1/2"
+            },
+            {
+                question: "In a deck of 10 cards, 3 are kings. What is the probability of drawing a king?",
+                items: [
+                    {label: 'King', color: 'purple', quantity: 3},
+                    {label: 'Other', color: 'lightgray', quantity: 7},
+                ],
+                options: ["3/10", "1/2", "2/5", "1/3"],
+                answer: "3/10"
+            },
+            {
+                question: "A jar contains 15 buttons: 5 red, 5 blue, and 5 green. What is the probability of picking a blue button?",
+                items: [
+                    {color: 'red', quantity: 5},
+                    {color: 'blue', quantity: 5},
+                    {color: 'green', quantity: 5},
+                ],
+                options: ["1/3", "1/2", "2/3", "1/4"],
+                answer: "1/3"
+            },
+            {
+                question: "There are 9 books on a shelf, 3 of which are math books. What is the probability of randomly selecting a math book?",
+                items: [
+                    {label: 'Math', color: 'orange', quantity: 3},
+                    {label: 'Other', color: 'lightgray', quantity: 6},
+                ],
+                options: ["1/3", "1/2", "2/3", "3/4"],
+                answer: "1/3"
+            },
+            {
+                question: "If a bag has 7 black pens and 3 blue pens, what is the probability of picking a blue pen?",
+                items: [
+                    {color: 'black', quantity: 7},
+                    {color: 'blue', quantity: 3},
+                ],
+                options: ["1/2", "1/3", "3/10", "2/5"],
+                answer: "3/10"
+            },
+            {
+                question: "In a race with 5 runners, what is the probability that a specific runner wins?",
+                items: [
+                    {label: 'Runner A', color: 'red', quantity: 1},
+                    {label: 'Others', color: 'lightgray', quantity: 4},
+                ],
+                options: ["1/5", "1/4", "2/5", "3/5"],
+                answer: "1/5"
+            },
+            {
+                question: "A bag contains 20 candies: 10 strawberry, 5 vanilla, and 5 chocolate. What is the probability of picking a vanilla candy?",
+                items: [
+                    {flavor: 'Strawberry', color: 'pink', quantity: 10},
+                    {flavor: 'Vanilla', color: 'white', quantity: 5},
+                    {flavor: 'Chocolate', color: 'brown', quantity: 5},
+                ],
+                options: ["1/2", "1/4", "1/5", "2/5"],
+                answer: "1/4"
+            },
+            {
+                question: "There are 14 seats in a row, and 2 are reserved. What is the probability that a randomly chosen seat is reserved?",
+                items: [
+                    {status: 'Reserved', color: 'red', quantity: 2},
+                    {status: 'Available', color: 'green', quantity: 12},
+                ],
+                options: ["1/7", "1/5", "1/4", "2/7"],
+                answer: "1/7"
+            },
+            {
+                question: "If a coin is flipped twice, what is the probability of getting two heads?",
+                items: [
+                    {outcome: 'HH', color: 'yellow', quantity: 1},
+                    {outcome: 'HT', color: 'blue', quantity: 1},
+                    {outcome: 'TH', color: 'blue', quantity: 1},
+                    {outcome: 'TT', color: 'gray', quantity: 1},
+                ],
+                options: ["1/4", "1/2", "3/4", "1/3"],
+                answer: "1/4"
+            },
+            {
+                question: "In a basket of 18 fruits, 6 are bananas. What is the probability of selecting a banana?",
+                items: [
+                    {type: 'Banana', color: 'yellow', quantity: 6},
+                    {type: 'Other', color: 'orange', quantity: 12},
+                ],
+                options: ["1/3", "1/4", "2/3", "1/2"],
+                answer: "1/3"
+            },
+            {
+                question: "A spinner has 8 equal sections: 2 red, 2 blue, 2 green, and 2 yellow. What is the probability it lands on yellow?",
+                items: [
+                    {color: 'red', quantity: 2},
+                    {color: 'blue', quantity: 2},
+                    {color: 'green', quantity: 2},
+                    {color: 'yellow', quantity: 2},
+                ],
+                options: ["1/2", "1/4", "1/8", "3/8"],
+                answer: "1/4"
+            },
+            // New Tougher Questions for Grade 6
+            {
+                question: "A deck of 52 cards has 4 suits: hearts, diamonds, clubs, and spades. What is the probability of drawing a heart or a queen?",
+                items: [
+                    {color: 'red', quantity: 13}, // Hearts
+                    {color: 'purple', quantity: 4}, // Queens
+                ],
+                options: ["4/13", "3/13", "1/4", "2/13"],
+                answer: "4/13"
+            },
+            {
+                question: "In a bag, there are 3 red, 4 blue, and 5 green marbles. If you pick two marbles without replacement, what is the probability both are blue?",
+                items: [
+                    {color: 'blue', quantity: 4},
+                    {color: 'red', quantity: 3},
+                    {color: 'green', quantity: 5},
+                ],
+                options: ["1/11", "1/3", "1/2", "1/4"],
+                answer: "1/11"
+            },
+            {
+                question: "A spinner is divided into 6 equal parts: 2 red, 2 blue, and 2 green. If you spin the spinner twice, what is the probability of getting two green results?",
+                items: [
+                    {color: 'green', quantity: 2},
+                    {color: 'red', quantity: 2},
+                    {color: 'blue', quantity: 2},
+                ],
+                options: ["1/9", "1/6", "1/3", "1/2"],
+                answer: "1/9"
+            },
+            {
+                question: "In a class of 30 students, 12 play soccer, 15 play basketball, and 5 play both. If a student is selected at random, what is the probability that the student plays basketball or soccer?",
+                items: [
+                    {sport: 'Soccer', color: 'green', quantity: 12},
+                    {sport: 'Basketball', color: 'orange', quantity: 15},
+                    {sport: 'Both', color: 'purple', quantity: 5},
+                ],
+                options: ["11/15", "7/15", "5/12", "2/3"],
+                answer: "11/15"
+            },
+            {
+                question: "A box contains 10 pens: 6 blue and 4 black. If you randomly select 3 pens without replacement, what is the probability that all 3 pens are blue?",
+                items: [
+                    {color: 'blue', quantity: 6},
+                    {color: 'black', quantity: 4},
+                ],
+                options: ["1/6", "1/5", "1/4", "1/3"],
+                answer: "1/6"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 120 * 60; // 20 minutes in seconds
+
+        function startTimer() {
+            timer = setInterval(function(){
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                $('#timer').text(`${minutes}:${seconds}`);
+                if(timeLeft <= 0){
+                    clearInterval(timer);
+                    endQuiz();
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            $("#next-btn").prop('disabled', true);
+            const q = quizData[currentQuestion];
+            $("#question-container").html(`<p><strong>Question ${currentQuestion + 1} of ${quizData.length}:</strong> ${q.question}</p>`);
+            generatePictogram(q.items);
+            $("#options").empty();
+
+            // Shuffle options
+            let shuffledOptions = shuffle([...q.options]);
+
+            shuffledOptions.forEach(option => {
+                const optionBtn = `<button class="btn btn-outline-primary option-btn w-100" data-answer="${option}">${option}</button>`;
+                $("#options").append(optionBtn);
+            });
+        }
+
+        function generatePictogram(items) {
+            $("#pictogram").empty();
+            items.forEach(item => {
+                for(let i = 0; i < item.quantity; i++) {
+                    let itemDiv = $('<div class="item"></div>');
+                    if(item.color){
+                        itemDiv.css('background-color', item.color);
+                    }
+                    if(item.label){
+                        itemDiv.attr('title', item.label);
+                    }
+                    if(item.flavor){
+                        itemDiv.attr('title', item.flavor + " candy");
+                    }
+                    if(item.status){
+                        itemDiv.attr('title', item.status + " seat");
+                    }
+                    if(item.outcome){
+                        itemDiv.attr('title', item.outcome);
+                    }
+                    if(item.sport){
+                        itemDiv.attr('title', item.sport + " player");
+                    }
+                    if(item.spell){
+                        itemDiv.attr('title', item.spell);
+                    }
+                    $("#pictogram").append(itemDiv);
+                }
+            });
+        }
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function showResult() {
+            $("#quiz").hide();
+            $("#result").show();
+            $("#score").text(score);
+            $("#total").text(quizData.length);
+            let percentage = (score / quizData.length) * 100;
+            let message = "";
+            if(percentage === 100){
+                message = "Excellent work!";
+            } else if(percentage >= 80){
+                message = "Great job!";
+            } else if(percentage >= 50){
+                message = "Good effort!";
+            } else {
+                message = "Keep practicing!";
+            }
+            $("#performance-message").text(message);
+        }
+
+        function endQuiz() {
+            clearInterval(timer);
+            // Disable all option buttons
+            $(".option-btn").prop('disabled', true);
+            // Hide Next button
+            $("#next-btn").prop('disabled', true);
+            showResult();
+        }
+
+        $("#next-btn").click(function(){
+            currentQuestion++;
+            if(currentQuestion < quizData.length){
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        });
+
+        $("#restart-btn").click(function(){
+            currentQuestion = 0;
+            score = 0;
+            timeLeft = 20 * 60;
+            $("#result").hide();
+            $("#quiz").show();
+            loadQuestion();
+            $("#timer").text("20:00");
+            clearInterval(timer);
+            startTimer();
+        });
+
+        $("#options").on('click', '.option-btn', function(){
+            const selected = $(this).data('answer');
+            const correct = quizData[currentQuestion].answer;
+            if(selected === correct){
+                score++;
+                $(this).removeClass('btn-outline-primary').addClass('btn-success');
+            } else {
+                $(this).removeClass('btn-outline-primary').addClass('btn-danger');
+                // Highlight the correct answer
+                $(".option-btn").each(function(){
+                    if($(this).data('answer') === correct){
+                        $(this).removeClass('btn-outline-primary').addClass('btn-success');
+                    }
+                });
+            }
+            $(".option-btn").prop('disabled', true);
+            $("#next-btn").prop('disabled', false);
+        });
+
+        // Initialize the quiz
+        loadQuestion();
+        startTimer();
+    });
+</script>
+
+</body>
+</html>

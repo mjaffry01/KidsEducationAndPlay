@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>French Worksheet with IntelliSense</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color: green;
+      color: white;
+    }
+    
+    .incorrect {
+      background-color: red;
+      color: white;
+    }
+
+    .autocomplete-items {
+      position: absolute;
+      border: 1px solid #d4d4d4;
+      border-bottom: none;
+      border-top: none;
+      z-index: 99;
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #fff;
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .autocomplete-items div:hover {
+      background-color: #e9e9e9;
+    }
+
+    .autocomplete-active {
+      background-color: DodgerBlue !important;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center">French Worksheet with IntelliSense</h1>
+    
+    <p>Fill in the table based on the details provided:</p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Country</th>
+          <th>Capital</th>
+          <th>City</th>
+          <th>Languages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="name1" class="form-control autocomplete" placeholder="Enter name"></td>
+          <td><input type="text" id="country1" class="form-control autocomplete" placeholder="Enter country"></td>
+          <td><input type="text" id="capital1" class="form-control autocomplete" placeholder="Enter capital"></td>
+          <td><input type="text" id="city1" class="form-control autocomplete" placeholder="Enter city"></td>
+          <td><input type="text" id="lang1" class="form-control autocomplete" placeholder="Enter languages"></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="name2" class="form-control autocomplete" placeholder="Enter name"></td>
+          <td><input type="text" id="country2" class="form-control autocomplete" placeholder="Enter country"></td>
+          <td><input type="text" id="capital2" class="form-control autocomplete" placeholder="Enter capital"></td>
+          <td><input type="text" id="city2" class="form-control autocomplete" placeholder="Enter city"></td>
+          <td><input type="text" id="lang2" class="form-control autocomplete" placeholder="Enter languages"></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="name3" class="form-control autocomplete" placeholder="Enter name"></td>
+          <td><input type="text" id="country3" class="form-control autocomplete" placeholder="Enter country"></td>
+          <td><input type="text" id="capital3" class="form-control autocomplete" placeholder="Enter capital"></td>
+          <td><input type="text" id="city3" class="form-control autocomplete" placeholder="Enter city"></td>
+          <td><input type="text" id="lang3" class="form-control autocomplete" placeholder="Enter languages"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary" onclick="checkAnswers()">Submit</button>
+
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      name1: "Mario",
+      country1: "Espagne",
+      capital1: "Madrid",
+      city1: "Madrid",
+      lang1: "espagnol et un peu allemand",
+      name2: "Varun Kapoor",
+      country2: "Inde",
+      capital2: "New Delhi",
+      city2: "New Delhi",
+      lang2: "hindi, anglais et un peu allemand",
+      name3: "Anne",
+      country3: "France",
+      capital3: "Paris",
+      city3: "Dijon",
+      lang3: "français, espagnol, anglais"
+    };
+
+    const autoSuggestions = {
+      names: ["Mario", "Varun Kapoor", "Anne"],
+      countries: ["Espagne", "Inde", "France"],
+      capitals: ["Madrid", "New Delhi", "Paris"],
+      cities: ["Madrid", "New Delhi", "Dijon"],
+      languages: ["espagnol et un peu allemand", "hindi, anglais et un peu allemand", "français, espagnol, anglais"]
+    };
+
+    // Function for autocomplete functionality
+    function autocomplete(input, arr) {
+      let currentFocus;
+      input.addEventListener("input", function() {
+        let a, b, i, val = this.value;
+        closeAllLists();
+        if (!val) { return false;}
+        currentFocus = -1;
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(a);
+        for (i = 0; i < arr.length; i++) {
+          if (arr[i].substr(0, val.length).toLowerCase() === val.toLowerCase()) {
+            b = document.createElement("DIV");
+            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+            b.innerHTML += arr[i].substr(val.length);
+            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+            b.addEventListener("click", function() {
+              input.value = this.getElementsByTagName("input")[0].value;
+              closeAllLists();
+            });
+            a.appendChild(b);
+          }
+        }
+      });
+
+      input.addEventListener("keydown", function(e) {
+        let x = document.getElementById(this.id + "autocomplete-list");
+        if (x) x = x.getElementsByTagName("div");
+        if (e.keyCode === 40) {
+          currentFocus++;
+          addActive(x);
+        } else if (e.keyCode === 38) {
+          currentFocus--;
+          addActive(x);
+        } else if (e.keyCode === 13) {
+          e.preventDefault();
+          if (currentFocus > -1) {
+            if (x) x[currentFocus].click();
+          }
+        }
+      });
+
+      function addActive(x) {
+        if (!x) return false;
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        x[currentFocus].classList.add("autocomplete-active");
+      }
+
+      function removeActive(x) {
+        for (let i = 0; i < x.length; i++) {
+          x[i].classList.remove("autocomplete-active");
+        }
+      }
+
+      function closeAllLists(elmnt) {
+        const items = document.getElementsByClassName("autocomplete-items");
+        for (let i = 0; i < items.length; i++) {
+          if (elmnt !== items[i] && elmnt !== input) {
+            items[i].parentNode.removeChild(items[i]);
+          }
+        }
+      }
+
+      document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+      });
+    }
+
+    // Attach autocomplete for each input field with the relevant suggestions
+    autocomplete(document.getElementById("name1"), autoSuggestions.names);
+    autocomplete(document.getElementById("country1"), autoSuggestions.countries);
+    autocomplete(document.getElementById("capital1"), autoSuggestions.capitals);
+    autocomplete(document.getElementById("city1"), autoSuggestions.cities);
+    autocomplete(document.getElementById("lang1"), autoSuggestions.languages);
+
+    autocomplete(document.getElementById("name2"), autoSuggestions.names);
+    autocomplete(document.getElementById("country2"), autoSuggestions.countries);
+    autocomplete(document.getElementById("capital2"), autoSuggestions.capitals);
+    autocomplete(document.getElementById("city2"), autoSuggestions.cities);
+    autocomplete(document.getElementById("lang2"), autoSuggestions.languages);
+
+    autocomplete(document.getElementById("name3"), autoSuggestions.names);
+    autocomplete(document.getElementById("country3"), autoSuggestions.countries);
+    autocomplete(document.getElementById("capital3"), autoSuggestions.capitals);
+    autocomplete(document.getElementById("city3"), autoSuggestions.cities);
+    autocomplete(document.getElementById("lang3"), autoSuggestions.languages);
+
+    function checkAnswers() {
+      let score = 0;
+      let totalQuestions = 15; // total fields to check
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      for (let i = 1; i <= 3; i++) {
+        const name = document.getElementById('name' + i).value.trim().toLowerCase();
+        const country = document.getElementById('country' + i).value.trim().toLowerCase();
+        const capital = document.getElementById('capital' + i).value.trim().toLowerCase();
+        const city = document.getElementById('city' + i).value.trim().toLowerCase();
+        const lang = document.getElementById('lang' + i).value.trim().toLowerCase();
+
+        checkField(name, 'name' + i, correctAnswers['name' + i].toLowerCase());
+        checkField(country, 'country' + i, correctAnswers['country' + i].toLowerCase());
+        checkField(capital, 'capital' + i, correctAnswers['capital' + i].toLowerCase());
+        checkField(city, 'city' + i, correctAnswers['city' + i].toLowerCase());
+        checkField(lang, 'lang' + i, correctAnswers['lang' + i].toLowerCase());
+      }
+
+      resultDiv.innerHTML += `<h3>Your result is ${score} out of ${totalQuestions}</h3>`;
+
+      function checkField(userAnswer, elementId, correctAnswer) {
+        const field = document.getElementById(elementId);
+        if (userAnswer === correctAnswer) {
+          field.classList.add('correct');
+          field.classList.remove('incorrect');
+          score++;
+        } else {
+          field.classList.add('incorrect');
+          field.classList.remove('correct');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

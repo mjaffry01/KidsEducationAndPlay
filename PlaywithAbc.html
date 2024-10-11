@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Letter Matching Game with Bubble Burst Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #b3e5fc;
+            overflow: hidden; /* Prevent scrollbars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        /* Lyrics Display Styling */
+        #lyrics {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+        /* Start Button Styling */
+        #startButton {
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px #999;
+            transition: background-color 0.3s, transform 0.1s;
+            z-index: 1; /* Ensure the button stays above the canvas */
+        }
+        #startButton:hover {
+            background-color: #45a049;
+        }
+        #startButton:active {
+            box-shadow: 0 2px #666;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Game Button -->
+    <button id="startButton">Start Game</button>
+
+    <!-- Lyrics Display -->
+    <div id="lyrics"></div>
+
+    <!-- Include Phaser.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <script>
+        // Define a color palette for bubbles
+        const bubbleColors = [
+            0xFF5733, // Red
+            0x33FF57, // Green
+            0x3357FF, // Blue
+            0xF1C40F, // Yellow
+            0x9B59B6, // Purple
+            0xE67E22, // Orange
+            0x1ABC9C, // Teal
+            0x34495E  // Dark Blue
+        ];
+
+        /**
+         * Determines appropriate text color (black or white) based on the background color brightness
+         * @param {number} backgroundColor - The hexadecimal color of the bubble
+         * @returns {string} - The hexadecimal color string for the text
+         */
+        function getTextColor(backgroundColor) {
+            // Convert hex color to RGB
+            const r = (backgroundColor >> 16) & 0xFF;
+            const g = (backgroundColor >> 8) & 0xFF;
+            const b = backgroundColor & 0xFF;
+
+            // Calculate the brightness using the YIQ formula
+            const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+
+            // Return black for bright backgrounds and white for dark backgrounds
+            return brightness > 128 ? '#000000' : '#FFFFFF';
+        }
+
+        // Game Configuration
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            backgroundColor: '#ade7ff',
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false
+                }
+            }
+        };
+
+        // Initialize the Game Variable
+        let gameInstance; // Will hold the Phaser game instance
+
+        // Game Variables
+        let bubbles = [];        // Array to hold bubble objects
+        let targetLetter;        // Current target letter to match
+        let score = 0;           // Player's score
+        let scoreText;           // Text object to display score
+        let targetText;          // Text object to display target letter
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Alphabet letters
+        let bubbleSpeed = 100;   // Speed at which bubbles move upward (pixels per second)
+
+        const lyrics = [
+            "Twinkle, twinkle, little star,",
+            "How I wonder what you are!",
+            "Up above the world so high,",
+            "Like a diamond in the sky.",
+            "Twinkle, twinkle, little star,",
+            "How I wonder what you are!"
+        ];
+        let currentLyricIndex = 0;
+        let lyricsDisplay = document.getElementById('lyrics');
+
+        // Preload Function: Load assets (excluding audio)
+        function preload() {
+            console.log("Preloading assets...");
+            // No assets to preload in this version
+        }
+
+        // Create Function: Set up the game objects
+        function create() {
+            console.log("Creating game objects...");
+            const scene = this; // Reference to the current scene
+
+            // Display "Match this letter:" prompt at the top center
+            scene.add.text(config.width / 2, 50, 'Match this letter:', {
+                fontSize: '32px',
+                fill: '#000'
+            }).setOrigin(0.5); // Center the text horizontally
+
+            // Select and display the target letter below the prompt
+            targetLetter = Phaser.Utils.Array.GetRandom(letters);
+            targetText = scene.add.text(config.width / 2, 120, targetLetter, {
+                fontSize: '48px',
+                fill: '#ff0000'
+            }).setOrigin(0.5); // Center the text horizontally
+            console.log("Initial target letter:", targetLetter);
+
+            // Display the initial score at the top-left corner
+            scoreText = scene.add.text(16, 16, 'Score: 0', {
+                fontSize: '32px',
+                fill: '#000'
+            });
+
+            // Create initial bubbles
+            for (let i = 0; i < 5; i++) {
+                // Assign the target letter to the first bubble to ensure it's present
+                if (i === 0) {
+                    createBubble(scene, 150 + i * 120, 550, targetLetter);
+                } else {
+                    createBubble(scene, 150 + i * 120, 550, Phaser.Utils.Array.GetRandom(letters));
+                }
+            }
+
+            // Start displaying lyrics
+            displayNextLyric();
+        }
+
+        /**
+         * Function to Create a Single Bubble
+         * @param {Phaser.Scene} scene - The current Phaser scene
+         * @param {number} x - The x-coordinate for the bubble
+         * @param {number} y - The y-coordinate for the bubble
+         * @param {string} letter - The letter to display on the bubble
+         */
+        function createBubble(scene, x, y, letter) {
+            console.log("Creating bubble:", letter, "at position:", x, y);
+            // Select a random color for the bubble
+            const bubbleColor = Phaser.Utils.Array.GetRandom(bubbleColors);
+
+            // Create a container to hold both the bubble graphic and the letter text
+            const bubbleContainer = scene.add.container(x, y);
+
+            // Draw a circle using Graphics
+            const graphics = scene.add.graphics();
+            graphics.fillStyle(bubbleColor, 1);        // Bubble fill color
+            graphics.lineStyle(4, 0x3399ff, 1);        // Bubble border color and thickness
+            graphics.fillCircle(0, 0, 40);             // Draw filled circle
+            graphics.strokeCircle(0, 0, 40);           // Draw circle border
+            bubbleContainer.add(graphics);             // Add graphics to the container
+
+            // Add the letter text to the bubble
+            const letterText = scene.add.text(0, 0, letter, {
+                font: '24px Arial',
+                fill: getTextColor(bubbleColor)        // Set text color based on bubble color
+            });
+            letterText.setOrigin(0.5);                  // Center the text within the bubble
+            bubbleContainer.add(letterText);            // Add text to the container
+
+            // Assign the letter and color as data properties of the container
+            bubbleContainer.setData('letter', letter);
+            bubbleContainer.setData('color', bubbleColor);
+
+            // Make the container interactive (clickable)
+            bubbleContainer.setSize(80, 80);
+            bubbleContainer.setInteractive();
+
+            // Add the bubble to the bubbles array for management
+            bubbles.push({
+                container: bubbleContainer,
+                letter: letter
+            });
+
+            // Click Handler for the Bubble
+            bubbleContainer.on('pointerdown', function () {
+                const currentLetter = this.getData('letter'); // Retrieve current letter
+                console.log('Bubble clicked:', currentLetter, 'Target:', targetLetter); // Debugging
+
+                if (currentLetter === targetLetter) {
+                    score += 10; // Increment score
+                    scoreText.setText('Score: ' + score); // Update score display
+
+                    // Play burst animation and reset bubble after animation
+                    playBurstAnimation(scene, this, 'correctClick');
+                } else {
+                    // Add feedback for incorrect selection (shake animation)
+                    scene.tweens.add({
+                        targets: this,
+                        x: this.x + 10,
+                        yoyo: true,
+                        repeat: 3,
+                        duration: 100
+                    });
+
+                    // Play burst animation and reset bubble after animation
+                    playBurstAnimation(scene, this, 'incorrectClick');
+                }
+            });
+        }
+
+        /**
+         * Function to Play Burst Animation and Reset Bubble
+         * @param {Phaser.Scene} scene - The current Phaser scene
+         * @param {Phaser.GameObjects.Container} bubbleContainer - The bubble container to animate
+         * @param {string} resetType - Type of reset ('correctClick' or 'incorrectClick')
+         */
+        function playBurstAnimation(scene, bubbleContainer, resetType) {
+            // Disable input on the bubble to prevent multiple clicks
+            bubbleContainer.disableInteractive();
+
+            // Animate the bubble to simulate bursting
+            scene.tweens.add({
+                targets: bubbleContainer,
+                scaleX: 1.5,
+                scaleY: 1.5,
+                alpha: 0,
+                duration: 300,
+                onComplete: function () {
+                    // Reset the bubble after the animation
+                    resetBubble(scene, bubbleContainer, resetType);
+                }
+            });
+        }
+
+        /**
+         * Function to Check if Target Letter is Present on Screen
+         * @returns {boolean} - True if target letter is present, false otherwise
+         */
+        function isTargetLetterPresent() {
+            return bubbles.some(function (bubbleObj) {
+                return bubbleObj.container.getData('letter') === targetLetter;
+            });
+        }
+
+        /**
+         * Function to Reset a Bubble's Position and Letter
+         * @param {Phaser.Scene} scene - The current Phaser scene
+         * @param {Phaser.GameObjects.Container} bubbleContainer - The bubble container to reset
+         * @param {string} resetType - Type of reset ('correctClick' or 'offScreen')
+         */
+        function resetBubble(scene, bubbleContainer, resetType) {
+            // Reset scale and alpha to default values
+            bubbleContainer.setScale(1);
+            bubbleContainer.setAlpha(1);
+
+            // Re-enable input
+            bubbleContainer.setInteractive();
+
+            if (resetType === 'correctClick') {
+                // Select a new target letter
+                targetLetter = Phaser.Utils.Array.GetRandom(letters);
+                targetText.setText(targetLetter);
+                console.log('New target letter:', targetLetter);
+
+                // Assign the new target letter to this bubble
+                bubbleContainer.setData('letter', targetLetter);
+
+                // Update the text object with the new target letter
+                const letterText = bubbleContainer.list.find(child => child.type === 'Text');
+                if (letterText) {
+                    letterText.setText(targetLetter);
+                    letterText.setStyle({ fill: getTextColor(bubbleContainer.getData('color')) }); // Update text color based on bubble color
+                } else {
+                    console.log('Error: Letter text not found in bubble container.');
+                }
+
+                // Sync lyrics with game events
+                displayNextLyric();
+            } else if (resetType === 'incorrectClick' || resetType === 'offScreen') {
+                // Check if the bubble had the target letter
+                const hadTargetLetter = bubbleContainer.getData('letter') === targetLetter;
+
+                // Assign a new random letter and color to the bubble
+                let newLetter = Phaser.Utils.Array.GetRandom(letters);
+                const newColor = Phaser.Utils.Array.GetRandom(bubbleColors);
+
+                // If the bubble had the target letter or the target letter is not present, assign the target letter
+                if (hadTargetLetter || !isTargetLetterPresent()) {
+                    newLetter = targetLetter;
+                    console.log('Reassigning target letter to bubble to ensure it is present on screen.');
+                }
+
+                bubbleContainer.setData('letter', newLetter);
+                bubbleContainer.setData('color', newColor);
+                console.log('Reset bubble to new letter:', newLetter, 'and color:', newColor.toString(16)); // Debugging
+
+                // Update the text object with the new letter
+                const letterText = bubbleContainer.list.find(child => child.type === 'Text');
+                if (letterText) {
+                    letterText.setText(newLetter);
+                    letterText.setStyle({ fill: getTextColor(newColor) }); // Update text color based on new background
+                } else {
+                    console.log('Error: Letter text not found in bubble container.');
+                }
+
+                // Redraw the bubble with the new color
+                const graphics = bubbleContainer.list.find(child => child.type === 'Graphics');
+                if (graphics) {
+                    graphics.clear();
+                    graphics.fillStyle(newColor, 1);        // New bubble fill color
+                    graphics.lineStyle(4, 0x3399ff, 1);     // Bubble border color and thickness
+                    graphics.fillCircle(0, 0, 40);          // Draw filled circle
+                    graphics.strokeCircle(0, 0, 40);        // Draw circle border
+                } else {
+                    console.log('Error: Graphics not found in bubble container.');
+                }
+            }
+
+            // Reset the bubble's position to the bottom with a new random x-coordinate
+            const newX = Phaser.Math.Between(50, config.width - 50);
+            const newY = 550;
+            bubbleContainer.x = newX;
+            bubbleContainer.y = newY;
+        }
+
+        /**
+         * Function to Display Next Lyric Line
+         * Displays lyrics one by one in sync with the nursery rhyme audio.
+         * Adjust the timing as per the length of each lyric line.
+         */
+        function displayNextLyric() {
+            if (currentLyricIndex < lyrics.length) {
+                lyricsDisplay.textContent = lyrics[currentLyricIndex];
+                currentLyricIndex++;
+                // Schedule the next lyric display (adjust the delay as needed)
+                setTimeout(displayNextLyric, 2000); // Display next lyric after 2 seconds
+            } else {
+                currentLyricIndex = 0; // Reset index if needed
+                lyricsDisplay.textContent = '';
+            }
+        }
+
+        // Update Function: Called every frame to update game logic
+        function update(time, delta) {
+            const deltaSeconds = delta / 1000; // Convert delta to seconds for consistent movement
+
+            // Iterate through each bubble and move it upward
+            bubbles.forEach(function (bubbleObj) {
+                bubbleObj.container.y -= bubbleSpeed * deltaSeconds; // Move bubble upward
+
+                // If the bubble moves off the top of the screen, reset it with 'offScreen' type
+                if (bubbleObj.container.y < -50) {
+                    resetBubble(this, bubbleObj.container, 'offScreen');
+                }
+            }, this); // Pass 'this' as context to forEach
+        }
+
+        // Start Game Function
+        function startGame() {
+            console.log("Start Game button clicked.");
+            // Hide the Start Button
+            document.getElementById('startButton').style.display = 'none';
+
+            // Initialize the Phaser game
+            gameInstance = new Phaser.Game(config);
+            console.log("Phaser game initialized.");
+        }
+
+        // Add Event Listener to Start Button
+        document.getElementById('startButton').addEventListener('click', startGame);
+    </script>
+</body>
+</html>
